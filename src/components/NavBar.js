@@ -1,22 +1,31 @@
 import React from 'react';
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../assets/logo.jpeg';
 
 const NavBar = () => {
-  return <Navbar expand="md" fixed="top">
+  return (
+  <Navbar expand="md" fixed="top">
     <Container>
-  <Navbar.Brand href="#home">
-    <img src={logo} alt='logo' height='45' />
-  </Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-  </Container>
-</Navbar>
-}
+      <Navbar.Brand>
+        <img src={logo} alt='logo' height='45' />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto text-left">
+          <Nav.Link>
+            <i className="fas fa-dharmachakra"></i> HOME
+          </Nav.Link>
+          <Nav.Link>
+            <i className="fas fa-door-open"></i> LOGIN
+          </Nav.Link>
+          <Nav.Link>
+            <i className="fas fa-user-plus"></i> SIGN UP
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+  );
+};
 
-export default NavBar
+export default NavBar;
