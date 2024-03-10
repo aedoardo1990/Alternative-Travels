@@ -1,0 +1,8 @@
+.NavBar {
+    background-color: aliceblue;
+    border: 1px solid black;
+}
+
+.Active {
+    color: black;
+}

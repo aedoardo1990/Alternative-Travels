@@ -1,26 +1,30 @@
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../assets/logo.jpeg';
+import styles from '../styles/NavBar.module.css';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-  <Navbar expand="md" fixed="top">
+  <Navbar expand="md" fixed="top" className={styles.NavBar}>
     <Container>
+      <NavLink to='/home'>
       <Navbar.Brand>
         <img src={logo} alt='logo' height='45' />
       </Navbar.Brand>
+      </NavLink>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-          <Nav.Link>
+          <NavLink exact to='/' activeClassName={styles.Active}>
             <i className="fas fa-dharmachakra"></i> HOME
-          </Nav.Link>
-          <Nav.Link>
+          </NavLink>
+          <NavLink to='/login' activeClassName={styles.Active}>
             <i className="fas fa-door-open"></i> LOGIN
-          </Nav.Link>
-          <Nav.Link>
+          </NavLink>
+          <NavLink to='/signup' activeClassName={styles.Active}>
             <i className="fas fa-user-plus"></i> SIGN UP
-          </Nav.Link>
+          </NavLink>
         </Nav>
       </Navbar.Collapse>
     </Container>
