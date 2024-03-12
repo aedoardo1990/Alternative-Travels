@@ -57,11 +57,19 @@ const handleSubmit = async (event) => {
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control className={styles.Input} type="password" placeholder="Password" name="password1" value={password1} onChange={handleChange} />
                         </Form.Group>
+                        {errors.password1?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>{message}
+                        </Alert>
+                        ))}
 
                         <Form.Group controlId="password2">
                             <Form.Label className="d-none">Confirm password</Form.Label>
                             <Form.Control className={styles.Input} type="password" placeholder="Confirm password" name="password2" value={password2} onChange={handleChange} />
                         </Form.Group>
+                        {errors.password2?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>{message}
+                        </Alert>
+                        ))}
 
                         <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} variant="primary" type="submit">
                             Submit
