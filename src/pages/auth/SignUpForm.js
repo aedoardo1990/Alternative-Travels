@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -20,6 +21,10 @@ const [errors, setErrors] = useState({});
 
 const history = useHistory();
 
+const [errors, setErrors] = useState({});
+
+const history = useHistory();
+
 const handleChange = (event) => {
     setSignUpData({
         ...signUpData,
@@ -28,12 +33,13 @@ const handleChange = (event) => {
 }
 
 const handleSubmit = async (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
     try {
         await axios.post('dj-rest-auth/registration/', signUpData);
         history.push("/login");
     } catch (err) {
-        setErrors(err.response?.data);
+        
     }
 }
 
@@ -43,6 +49,7 @@ const handleSubmit = async (event) => {
                 <Container className={`${appStyles.Content} p-4 `}>
                     <h1 className={styles.Header}>sign up</h1>
                     {/*Form to SignUp */} 
+                    <Form onSubmit={handleSubmit}>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
                             <Form.Label className="d-none">Username</Form.Label>
