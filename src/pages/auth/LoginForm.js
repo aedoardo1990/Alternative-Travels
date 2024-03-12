@@ -27,14 +27,6 @@ function SignInForm() {
     const [errors, setErrors] = useState({});
 
     const history = useHistory();
-
-    const handleChange = (event) => {
-        setLoginData({
-            ...loginData,
-            [event.target.name]: event.target.value,
-        });
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -43,7 +35,14 @@ function SignInForm() {
         } catch (err) {
             setErrors(err.response?.data);
         }
-    }
+    };
+
+    const handleChange = (event) => {
+        setLoginData({
+            ...loginData,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     return (
         <Row className={styles.Row}>
