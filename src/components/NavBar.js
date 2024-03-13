@@ -3,31 +3,45 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../assets/logo.jpeg';
 import styles from '../styles/NavBar.module.css';
 import { NavLink } from 'react-router-dom';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser, } from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
+import axios from 'axios';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post('dj-rest-auth/logout/');
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err)
+    }
+  };
 
   const addPostIcon = (
     <NavLink to='/posts/add' className={styles.NavLink} activeClassName={styles.Active}>
-      <i className="far fa-solid fa-plus"></i> POST
+      <i className="far fa-solid fa-plus"></i> Post
     </NavLink>
   );
 
-  const loggedInIcons = <>
+  const loggedInIcons = (
+  <>
     <NavLink to='/newsfeed' className={styles.NavLink} activeClassName={styles.Active}>
       <i className="fas fa-regular fa-newspaper"></i> Newsfeed
     </NavLink>
     <NavLink to='/liked-posts' className={styles.NavLink} activeClassName={styles.Active}>
       <i className="fas fa-solid fa-thumbs-up"></i> Liked
     </NavLink>
-    <NavLink to='/' className={styles.NavLink} onClick={() => {}}>
-      <i className="fas fa-solid fa-right-from-bracket"></i> Log Out
+    <NavLink to='/' className={styles.NavLink} onClick={handleSignOut}>
+      <i className="fas fa-solid fa-right-from-bracket"></i> Logout
     </NavLink>
     <NavLink to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink}>
-      <img src={currentUser?.profile_image} alt='profile image'/>
+      <Avatar src={currentUser?.profile_image} text='Profile' height={40} />
     </NavLink>
   </>
+  );
   const loggedOutIcons = (
     <>
       <NavLink to='/login' className={styles.NavLink} activeClassName={styles.Active}>
