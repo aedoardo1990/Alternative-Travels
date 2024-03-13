@@ -38,7 +38,7 @@ const NavBar = () => {
       <i className="fas fa-solid fa-right-from-bracket"></i> Logout
     </NavLink>
     <NavLink to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink}>
-      <Avatar src={currentUser?.image} text={currentUser?.username} height={40} />
+      <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
     </NavLink>
   </>
   );
