@@ -60,7 +60,8 @@ function SignInForm() {
                             <Form.Control className={styles.Input} type="text" placeholder="Username" name="username" value={username} onChange={handleChange} />
                         </Form.Group>
                         {errors.username?.map((message, idx) =>(
-                        <Alert variant="warning" key={idx}>{message}
+                        <Alert variant="warning" key={idx}>
+                            {message}
                         </Alert>
                         ))}
 
@@ -69,7 +70,8 @@ function SignInForm() {
                             <Form.Control className={styles.Input} type="password" placeholder="Password" name="password" value={password} onChange={handleChange} />
                         </Form.Group>
                         {errors.password?.map((message, idx) =>(
-                            <Alert variant="warning" key={idx}>{message}
+                            <Alert variant="warning" key={idx}>
+                                 {message}
                             </Alert>
                             ))}
 
