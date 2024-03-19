@@ -58,7 +58,7 @@ function PostCreateForm() {
 
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => { }}
+                onClick={() => {}}
             >
                 cancel
             </Button>
@@ -79,7 +79,7 @@ function PostCreateForm() {
                             {image ? (
                                 <>
                                 <figure>
-                                    <Image className={appStyles.Image} src={Image} rounded/>
+                                    <Image className={appStyles.Image} src={image} rounded/>
                                 </figure>
                                 <div>
                                     <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
@@ -94,7 +94,7 @@ function PostCreateForm() {
                             >
                                 <Asset src={Upload} message="Click or tap to upload an image" />
                             </Form.Label>
-                            )};
+                            )}
 
                         <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} />
 
