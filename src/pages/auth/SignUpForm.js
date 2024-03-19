@@ -49,7 +49,8 @@ const SignUpForm = () => {
                             <Form.Control className={styles.Input} type="text" placeholder="Username" name="username" value={username} onChange={handleChange} />
                         </Form.Group>
                         {errors.username?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}
+                            <Alert variant="warning" key={idx}>
+                                {message}
                             </Alert>
                         ))}
 
@@ -58,7 +59,8 @@ const SignUpForm = () => {
                             <Form.Control className={styles.Input} type="password" placeholder="Password" name="password1" value={password1} onChange={handleChange} />
                         </Form.Group>
                         {errors.password1?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}
+                            <Alert variant="warning" key={idx}>
+                                {message}
                             </Alert>
                         ))}
 
@@ -67,7 +69,8 @@ const SignUpForm = () => {
                             <Form.Control className={styles.Input} type="password" placeholder="Confirm password" name="password2" value={password2} onChange={handleChange} />
                         </Form.Group>
                         {errors.password2?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}
+                            <Alert variant="warning" key={idx}>
+                                {message}
                             </Alert>
                         ))}
 
@@ -75,7 +78,8 @@ const SignUpForm = () => {
                             Sign up
                         </Button>
                         {errors.non_field_errors?.map((message, idx) => (
-                            <Alert variant="warning" key={idx} className="mt-3">{message}
+                            <Alert variant="warning" key={idx} className="mt-3">
+                                {message}
                             </Alert>
                             ))}
                     </Form>
