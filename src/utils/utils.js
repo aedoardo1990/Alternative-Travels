@@ -3,7 +3,7 @@ import { axiosReq } from "../api/axiosDefaults";
 export const fetchMoreData = async (resource, setResource) => {
     try {
         const {data} = await axiosReq.get(resource.next);
-        setResource(prevResource => ({
+        setResource((prevResource) => ({
             ...prevResource,
             next: data.next,
             results: data.results.reduce((acc, cur) => {
@@ -16,3 +16,18 @@ export const fetchMoreData = async (resource, setResource) => {
         console.log(err);
     }
 };
+
+export const followHelper = (profile, clickedProfile, following_id) => {
+    return profile.id === clickedProfile.id
+    ?
+    {
+        ...profile,
+        followers_count: profile.followers_count + 1,
+        following_id,
+    }
+    : profile.is_owner
+    ?
+    {...profile, following_count: profile.following_count + 1 }
+    :
+    profile;
+}; 
