@@ -1,0 +1,36 @@
+.TagList {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    color: black;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  .Input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100px;
+    border: none;
+  }
+  
+  .Input:focus {
+    box-shadow: none;
+  }
+  
+  .Tag {
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: fit-content;
+    font-size: 0.9rem;
+    padding: 2px 5px;
+    margin: 4px 1px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: blue;
+    white-space: nowrap;
+    color: white;
+  }

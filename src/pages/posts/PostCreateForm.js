@@ -8,31 +8,45 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import Badge from "react-bootstrap/Badge";
 
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import TagField from "../../components/TagField";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function PostCreateForm() {
+function PostCreateForm(props) {
     useRedirect('loggedOut');
+    const { showMessage } = props;
     const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
         title: '',
         content: '',
         image: '',
+        tags: [],
     });
 
-    const { title, content, image } = postData;
+    const { title, content, image, tags } = postData;
 
     const imageInput = useRef(null);
     const history = useHistory();
+
+    // Method for getting tags from TagField component
+    const setTags = (tags) => {
+        setPostData({
+            ...postData,
+            tags: tags,
+        });
+    };
 
     const handleChange = (event) => {
         setPostData({
@@ -59,6 +73,15 @@ function PostCreateForm() {
         formData.append('content', content);
         formData.append('image', imageInput.current.files[0]);
 
+        //for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
+        if (tags.length) {
+            tags.forEach((tag, index) => {
+                formData.append(`tags[${index}]`, tag);
+            });
+        } else {
+            formData.append("tags", []);
+        }
+
         try {
             const { data } = await axiosReq.post('/posts/', formData);
             history.push(`/posts/${data.id}`);
@@ -69,6 +92,16 @@ function PostCreateForm() {
             }
         }
     };
+
+    const tagErrors = (
+        <>
+            {errors.tags && (
+                <Alert className={styles.Alert} variant="warning">
+                    {errors.tags[0]}
+                </Alert>
+            )}
+        </>
+    );
 
     const textFields = (
         <div className="text-center">
@@ -93,18 +126,24 @@ function PostCreateForm() {
                     {message}
                 </Alert>
             ))}
+            
+            <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
+            {tagErrors}
 
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 onClick={() => history.goBack()}
             >
-                cancel
+                Delete
             </Button>
             <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                create
+                Create
             </Button>
+
         </div>
     );
+
+
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -136,15 +175,19 @@ function PostCreateForm() {
                             <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
                         ))}
                         <div className="d-md-none">{textFields}</div>
+
+
                     </Container>
                 </Col>
                 <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Content}>{textFields}</Container>
+                    <Container className={appStyles.Content}>
+                        {textFields}
+                    </Container>
                 </Col>
             </Row>
         </Form >
