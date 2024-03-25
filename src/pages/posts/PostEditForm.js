@@ -15,16 +15,20 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function PostEditForm() {
+import TagField from "../../components/TagField";
+
+function PostEditForm(props) {
+    const { showMessage } = props;
     const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
         title: '',
         content: '',
         image: '',
+        tags: [],
     });
 
-    const { title, content, image } = postData;
+    const { title, content, image, tags } = postData;
 
     const imageInput = useRef(null);
     const history = useHistory();
@@ -34,21 +38,29 @@ function PostEditForm() {
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}`);
-                const { title, content, image, is_owner } = data;
+                const { title, content, image, is_owner, tags } = data;
 
-                is_owner ? setPostData({ title, content, image }) : history.push("/");
+                is_owner ? setPostData({ title: title, content: content, image: image, tags: tags }) : history.push("/");
             } catch (err) {
                 console.log(err);
             }
         };
 
         handleMount();
-    }, [history, id]);
+    }, [history, id, postData]);
 
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
+        });
+    };
+
+    // Method for getting tags from TagField component
+    const setTags = (tags) => {
+        setPostData({
+            ...postData,
+            tags: tags,
         });
     };
 
@@ -71,6 +83,15 @@ function PostEditForm() {
 
         if (imageInput?.current?.files[0]) {
             formData.append('image', imageInput.current.files[0]);
+        }
+
+        // Solution for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
+        if (tags.length) {
+            tags.forEach((tag, index) => {
+                formData.append(`tags[${index}]`, tag);
+            });
+        } else {
+            formData.append("tags", []);
         }
 
         try {
@@ -107,17 +128,17 @@ function PostEditForm() {
                     {message}
                 </Alert>
             ))}
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => history.goBack()}
-            >
-                cancel
-            </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                save
-            </Button>
         </div>
+    );
+
+    const tagErrors = (
+        <>
+            {errors.tags && (
+                <Alert className={styles.Alert} variant="warning">
+                    {errors.tags[0]}
+                </Alert>
+            )}
+        </>
     );
 
     return (
@@ -143,11 +164,23 @@ function PostEditForm() {
                                 {message}
                             </Alert>
                         ))}
-                        <div className="d-md-none">{textFields}</div>
                     </Container>
                 </Col>
-                <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Content}>{textFields}</Container>
+                <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
+                    <Container className={appStyles.Content}>
+                        {textFields}
+                        <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />
+                        {tagErrors}
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            onClick={() => history.goBack()}
+                        >
+                            Delete
+                        </Button>
+                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+                            Create
+                        </Button>
+                    </Container>
                 </Col>
             </Row>
         </Form >

@@ -90,16 +90,6 @@ function PostCreateForm(props) {
         }
     };
 
-    const tagErrors = (
-        <>
-            {errors.tags && (
-                <Alert className={styles.Alert} variant="warning">
-                    {errors.tags[0]}
-                </Alert>
-            )}
-        </>
-    );
-
     const textFields = (
         <div className="text-center">
             {/* Create Post form */}
@@ -123,24 +113,18 @@ function PostCreateForm(props) {
                     {message}
                 </Alert>
             ))}
-            
-            <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
-            {tagErrors}
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => history.goBack()}
-            >
-                Delete
-            </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                Create
-            </Button>
-
         </div>
     );
 
-
+    const tagErrors = (
+        <>
+            {errors.tags && (
+                <Alert className={styles.Alert} variant="warning">
+                    {errors.tags[0]}
+                </Alert>
+            )}
+        </>
+    );
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -176,14 +160,25 @@ function PostCreateForm(props) {
                                 {message}
                             </Alert>
                         ))}
-                        <div className="d-md-none">{textFields}</div>
-
-
                     </Container>
                 </Col>
-                <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+
+                <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                     <Container className={appStyles.Content}>
                         {textFields}
+
+                        <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
+                        {tagErrors}
+
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            onClick={() => history.goBack()}
+                        >
+                            Delete
+                        </Button>
+                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+                            Create
+                        </Button>
                     </Container>
                 </Col>
             </Row>
