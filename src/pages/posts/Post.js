@@ -126,6 +126,7 @@ const Post = (props) => {
             <Card.Body>
                 {title && <Card.Title className='text-center'>{title}</Card.Title>}
                 {content && <Card.Text>{content}</Card.Text>}
+                {postDetails}
                 <div className={styles.PostBar}>
                     {is_owner ? (
                         <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
