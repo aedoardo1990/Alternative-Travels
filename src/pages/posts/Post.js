@@ -1,5 +1,11 @@
 import React from 'react'
 import styles from "../../styles/Post.module.css";
+import ListGroup from "react-bootstrap/ListGroup";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Accordion from "react-bootstrap/Accordion";
+
+import appStyles from "../../App.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -22,11 +28,33 @@ const Post = (props) => {
         updated_at,
         postPage,
         setPosts,
+        tags,
     } = props;
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+
+    const postDetails = (
+        <Row className="mt-2">
+            <Col md={7} className="pe-md-0">
+                <ListGroup className={`${appStyles.SmallText} mb-1 me-0`}>
+                    {tags?.length > 0 && (
+                        <ListGroup.Item className="flex-fill">
+                            <div className="fw-bold">Tags</div>
+                            <div className="d-flex align-items-center flex-wrap">
+                                {tags?.map((tag, index) => (
+                                    <span className={styles.Tag} key={index}>
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </ListGroup.Item>
+                    )}
+                </ListGroup>
+            </Col>
+        </Row>
+    );
 
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
@@ -43,13 +71,13 @@ const Post = (props) => {
 
     const handleLike = async () => {
         try {
-            const {data} = await axiosRes.post("/likes/", { post: id });
+            const { data } = await axiosRes.post("/likes/", { post: id });
             setPosts((prevPosts) => ({
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
                     return post.id === id
-                    ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-                    : post;
+                        ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+                        : post;
                 }),
             }));
         } catch (err) {
@@ -64,8 +92,8 @@ const Post = (props) => {
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
                     return post.id === id
-                    ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-                    : post;
+                        ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+                        : post;
                 }),
             }));
         } catch (err) {
@@ -84,10 +112,10 @@ const Post = (props) => {
                     <div className='d-flex align-items-center'>
                         <span>{updated_at}</span>
                         {is_owner && postPage && (
-                        <MoreDropdown
-                        handleEdit={handleEdit}
-                        handleDelete={handleDelete}
-                        />
+                            <MoreDropdown
+                                handleEdit={handleEdit}
+                                handleDelete={handleDelete}
+                            />
                         )}
                     </div>
                 </Media>

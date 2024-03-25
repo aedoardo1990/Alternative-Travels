@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-
 import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
-import Popover from "react-bootstrap/Popover";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
 import styles from "../styles/TagField.module.css";
 
 // Tag field instructions from: https://blog.logrocket.com/building-a-tag-input-field-component-for-react/
@@ -68,28 +63,6 @@ const TagField = ({ sendTags, showMessage, previousTags, currentTags }) => {
     <Form.Group className="mb-3">
       <Form.Label>
         Tags
-        <OverlayTrigger
-          placement="top"
-          overlay={
-            <Popover id="tags-help">
-              <Popover.Header as="h3">How to use tags</Popover.Header>
-              <Popover.Body>
-                <p>Tags are used to categorize sounds. You can provide up to 15 tags for each sound.</p>
-                <p>
-                  While it might be tempting to just use the origin of a sound as a tag (such as{" "}
-                  <Badge bg="secondary">dog</Badge> or <Badge bg="secondary">car</Badge>) it is encouraged to use more
-                  descriptive tags that describe the sound itself (such as <Badge bg="secondary">barking</Badge> or{" "}
-                  <Badge bg="secondary">rumbling</Badge> or the mood/atmosphere of the sound (such as{" "}
-                  <Badge bg="secondary">peaceful</Badge> or <Badge bg="secondary">noisy</Badge>).
-                </p>
-              </Popover.Body>
-            </Popover>
-          }
-        >
-          <Badge pill bg="secondary" className="ms-2">
-            ?
-          </Badge>
-        </OverlayTrigger>
       </Form.Label>
 
       <div className={styles.TagList}>
