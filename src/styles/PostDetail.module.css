@@ -1,0 +1,60 @@
+.PostImage {
+    width: 100%;
+    max-width: 100%;
+    max-height: 25vh;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    aspect-ratio: 1/1;
+  }
+  
+  .Title {
+    font-size: 0.9rem;
+  }
+  
+  @media (min-width: 480px) {
+    .Title {
+      font-size: 1rem;
+    }
+  }
+  
+  .Tag {
+    margin-right: 3px;
+    padding: 2px 6px;
+    margin-top: 0.25rem;
+    border-radius: 5px;
+    background-color: #d939ab;
+    color: #fff;
+    font-size: 0.8rem;
+  }
+  
+  .Footer i {
+    margin-right: 5px;
+  }
+  
+  .HeartLiked {
+    color: #d939ab;
+  }
+  
+  .HeartLiked:hover {
+    color: #a21078;
+  }
+  
+  .HeartNotLiked:hover {
+    color: #d939ab;
+  }
+  
+  .AccordionHeader * {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem;
+  }
+  
+  .AccordionHeader > button {
+    z-index: 1 !important;
+    box-shadow: none !important;
+  }
+  
+  .AccordionHeader *[aria-expanded="true"] {
+    background-color: #f1f2f3;
+    color: #000000;
+  }
