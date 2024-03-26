@@ -41,8 +41,6 @@ const MapPopup = (props) => {
         </span>
       </Link>
 
-      <AudioPlayer audioUrl={audio_file} height={25} />
-
       <div className="mt-2 d-flex justify-content-end">
         <span className="me-2">
           {isOwner ? (

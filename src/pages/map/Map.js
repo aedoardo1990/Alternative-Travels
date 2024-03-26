@@ -4,7 +4,7 @@ import styles from "../../styles/Map.module.css";
 
 import Form from "react-bootstrap/Form";
 
-import { axiosRequest } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import MapPopup from "./MapPopup";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -17,11 +17,11 @@ const Map = () => {
     const fetchPosts = async () => {
       setHasLoaded(false);
       try {
-        const { data } = await axiosRequest.get(`/posts/?search=${query}`);
+        const { data } = await axiosReq.get(`/posts/?search=${query}`);
         let counter = 2;
         let next = data.next;
         while (next) {
-          const { data: moreData } = await axiosRequest.get(`/posts/?page=${counter}`);
+          const { data: moreData } = await axiosReq.get(`/posts/?page=${counter}`);
           data.results.push(...moreData.results);
           counter++;
           next = moreData.next;
