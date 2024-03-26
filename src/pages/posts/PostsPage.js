@@ -22,7 +22,6 @@ function PostsPage({ message, filter = "" }) {
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
-
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -60,7 +59,7 @@ function PostsPage({ message, filter = "" }) {
                         onChange={(event) => setQuery(event.target.value)}
                         type="text"
                         className="mr-sm-2"
-                        placeholder="Search posts"
+                        placeholder="Search by tag, post or user"
                     />
                 </Form>
                 {hasLoaded ? (
