@@ -16,6 +16,7 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import TagField from "../../components/TagField";
+import LocationField from "../../components/LocationField";
 import Asset from "../../components/Asset";
 
 function PostEditForm(props) {
@@ -27,28 +28,37 @@ function PostEditForm(props) {
         content: '',
         image: '',
         tags: [],
+        location: [],
     });
 
-    const { title, content, image, tags } = postData;
+    const { title, content, image, tags, location } = postData;
 
     const imageInput = useRef(null);
     const history = useHistory();
     const { id } = useParams();
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     useEffect(() => {
         const handleMount = async () => {
             if (!hasLoaded) {
-            try {
-                const { data } = await axiosReq.get(`/posts/${id}`);
-                setHasLoaded(true);
-                const { title, content, image, is_owner, tags } = data;
+                try {
+                    const { data } = await axiosReq.get(`/posts/${id}`);
+                    setHasLoaded(true);
+                    const { title, content, image, is_owner, tags, latitude, longitude } = data;
 
-                is_owner ? setPostData({ title: title, content: content, image: image, tags: tags }) : history.push("/");
-            } catch (err) {
-                console.log(err);
+                    is_owner ? setPostData({
+                        title: title,
+                        content: content,
+                        image: image,
+                        tags: tags,
+                        location: [latitude, longitude],
+                    })
+                        : history.push("/");
+                } catch (err) {
+                    console.log(err);
+                }
             }
-        }
         };
 
         handleMount();
@@ -61,11 +71,19 @@ function PostEditForm(props) {
         });
     };
 
-    // Method for getting tags from TagField component
+    // to get tags from TagField component
     const setTags = (tags) => {
         setPostData({
             ...postData,
             tags: tags,
+        });
+    };
+
+    // to get location from LocationField component
+    const setLocation = (location) => {
+        setPostData({
+            ...postData,
+            location: location,
         });
     };
 
@@ -81,11 +99,12 @@ function PostEditForm(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setButtonDisabled(true);
         const formData = new FormData();
-
         formData.append('title', title);
         formData.append('content', content);
-
+        formData.append("latitude", location[0]);
+        formData.append("longitude", location[1]);
         // Solution for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -99,10 +118,12 @@ function PostEditForm(props) {
         }
         try {
             await axiosReq.put(`/posts/${id}`, formData);
+            setButtonDisabled(false);
             history.push(`/posts/${id}`);
         } catch (err) {
             console.log(err);
             setErrors(err.response?.data);
+            setButtonDisabled(false);
         }
     };
 
@@ -142,56 +163,79 @@ function PostEditForm(props) {
         </>
     );
 
+    const locationErrors = (
+        <>
+            {errors.latitude?.map((msg, i) => (
+                <Alert className={styles.Alert} variant="warning" key={i}>
+                    {msg}
+                </Alert>
+            ))}
+            {errors.longitude?.map((msg, i) => (
+                <Alert className={styles.Alert} variant="warning" key={i}>
+                    {msg}
+                </Alert>
+            ))}
+        </>
+    );
+
     return (
         <>
-      {hasLoaded ? (
-        <Form onSubmit={handleSubmit}>
-            <Row>
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                    >
-                        <Form.Group className="text-center">
-                            <figure>
-                                <Image className={appStyles.Image} src={image} rounded />
-                            </figure>
-                            <div>
-                                <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
-                                    Change image
-                                </Form.Label>
-                            </div>
-                            <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
-                        </Form.Group>
-                        {errors?.image?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
-                    </Container>
-                </Col>
-                <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Content}>
-                        {textFields}
+            {hasLoaded ? (
+                <Form onSubmit={handleSubmit}>
+                    <Row>
+                        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                            <Container
+                                className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                            >
+                                <Form.Group className="text-center">
+                                    <figure>
+                                        <Image className={appStyles.Image} src={image} rounded />
+                                    </figure>
+                                    <div>
+                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
+                                            Change image
+                                        </Form.Label>
+                                    </div>
+                                    <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
+                                </Form.Group>
+                                {errors?.image?.map((message, idx) => (
+                                    <Alert variant="warning" key={idx}>
+                                        {message}
+                                    </Alert>
+                                ))}
+                            </Container>
+                        </Col>
+                        <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
+                            <Container className={appStyles.Content}>
+                                {textFields}
 
-                       {title && <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />}
-                       {tagErrors}
-                        <Button
-                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                            onClick={() => history.goBack()}
-                        >
-                            Delete
-                        </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                            Create
-                        </Button>
-                    </Container>
-                </Col>
-            </Row>
-        </Form >
-      ) : (
-      <Asset spinner />
-      )}
-    </>
+                                {title && <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />}
+                                {tagErrors}
+
+                                <LocationField
+                                    sendLocation={setLocation}
+                                    showMessage={showMessage}
+                                    previousLocation={location}
+                                    setButtonDisabled={setButtonDisabled}
+                                />
+                                {locationErrors}
+                                <Button
+                                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                    onClick={() => history.goBack()}
+                                >
+                                    Delete
+                                </Button>
+                                <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled}>
+                                    Create
+                                </Button>
+                            </Container>
+                        </Col>
+                    </Row>
+                </Form >
+            ) : (
+                <Asset spinner />
+            )}
+        </>
     );
 }
 

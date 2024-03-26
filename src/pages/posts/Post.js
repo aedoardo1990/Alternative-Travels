@@ -11,7 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
 import { MoreDropdown } from '../../components/MoreDropdown';
-import PostImage from "../../components/PostImage";
+//import PostImage from "../../components/PostImage";
 import PostDetailMap from "../../components/PostDetailMap";
 
 const Post = (props) => {

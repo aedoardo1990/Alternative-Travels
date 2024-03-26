@@ -91,11 +91,11 @@ function PostCreateForm(props) {
         }
         try {
             const { data } = await axiosReq.post('/posts/', formData);
-            setButtonDisabled(true);
+            setButtonDisabled(false);
             history.push(`/posts/${data.id}`);
         } catch (err) {
             setErrors(err.response?.data);
-            setButtonDisabled(true);
+            setButtonDisabled(false);
         }
     };
 
