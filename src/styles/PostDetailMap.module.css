@@ -1,0 +1,16 @@
+.Map {
+    min-height: 150px;
+    height: 100%;
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .Map svg {
+    display: none !important;
+  }
+  
+  /* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
+  .Map > div > div:nth-child(4) img {
+    filter: hue-rotate(110deg) !important;
+  }
