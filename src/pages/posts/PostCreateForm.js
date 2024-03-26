@@ -201,7 +201,7 @@ function PostCreateForm(props) {
                 <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                     <Container className={appStyles.Content}>
                         {textFields}
-
+                        
                         <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
                         {locationErrors}
 

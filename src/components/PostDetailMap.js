@@ -4,7 +4,7 @@ import styles from "../styles/PostDetailMap.module.css";
 
 const PostDetailMap = ({ post, rerender }) => {
   const [key, setKey] = useState(0);
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState({lat:null,lng:null});
 
   useEffect(() => {
     setLocation(post.location);
@@ -16,10 +16,12 @@ const PostDetailMap = ({ post, rerender }) => {
   }, [post, rerender]);
 
   return (
-    <MapContainer key={key} className={styles.Map} center={location} zoom={6} scrollWheelZoom={false}>
+    <div>
+    <MapContainer center={location} key={key} className={styles.Map} zoom={6} scrollWheelZoom={false}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker key={post.id} position={location}></Marker>
+      {location.lat && location.lng && <Marker position={[location.lat, location.lng]} />}
     </MapContainer>
+    </div>
   );
 };
 
