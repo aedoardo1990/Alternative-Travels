@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
-import Popover from "react-bootstrap/Popover";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Button from "react-bootstrap/Button";
 
 import btnStyles from "../styles/Button.module.css";
@@ -51,7 +48,7 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation([position.coords.latitude, position.coords.longitude]);
-          showMessage("success", "Location data retrieved successfully.");
+          //showMessage("success", "Location data retrieved successfully.");
           setLocationChanged(true);
           setShowTooltip(false);
           setButtonDisabled(false);
@@ -70,29 +67,6 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
     <Form.Group className="mb-3">
       <Form.Label>
         Location
-        <OverlayTrigger
-          placement="top"
-          overlay={
-            <Popover id="tags-help">
-              <Popover.Header as="h3">How to provide location data</Popover.Header>
-              <Popover.Body>
-                <p>Please provide the location where the sound was recorded.</p>
-                <p>
-                  You can provide geolocation data for your sound by allowing access to your location. Click on{" "}
-                  <Badge bg="secondary">Get location</Badge> to retrieve you location.
-                </p>
-                <p>
-                  Alternatively you can select your location on a map. Click on{" "}
-                  <Badge bg="secondary">Select location on Map</Badge> to open the map.
-                </p>
-              </Popover.Body>
-            </Popover>
-          }
-        >
-          <Badge pill bg="secondary" className="ms-2">
-            ?
-          </Badge>
-        </OverlayTrigger>
       </Form.Label>
       <Form.Control className={styles.Input} name="location" placeholder={locationStatus} value={location} disabled />
 

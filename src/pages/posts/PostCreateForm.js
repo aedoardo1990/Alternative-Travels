@@ -15,6 +15,7 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import TagField from "../../components/TagField";
+import LocationField from "../../components/LocationField";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -30,18 +31,27 @@ function PostCreateForm(props) {
         content: '',
         image: '',
         tags: [],
+        location: [],
     });
 
-    const { title, content, image, tags } = postData;
-
+    const { title, content, image, tags, location } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     // Method for getting tags from TagField component
     const setTags = (tags) => {
         setPostData({
             ...postData,
             tags: tags,
+        });
+    };
+
+    // Method for getting location from LocationField component
+    const setLocation = (location) => {
+        setPostData({
+            ...postData,
+            location: location,
         });
     };
 
@@ -64,10 +74,13 @@ function PostCreateForm(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setButtonDisabled(true);
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
         formData.append('image', imageInput.current.files[0]);
+        formData.append('latitude', location[0]);
+        formData.append('longitude', location[1]);
         //for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -78,9 +91,11 @@ function PostCreateForm(props) {
         }
         try {
             const { data } = await axiosReq.post('/posts/', formData);
+            setButtonDisabled(true);
             history.push(`/posts/${data.id}`);
         } catch (err) {
             setErrors(err.response?.data);
+            setButtonDisabled(true);
         }
     };
 
@@ -91,10 +106,10 @@ function PostCreateForm(props) {
             <Form.Group>
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                type="text" 
-                name="title" 
-                value={title} 
-                onChange={handleChange} />
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={handleChange} />
             </Form.Group>
 
             {errors?.title?.map((message, idx) => (
@@ -106,11 +121,11 @@ function PostCreateForm(props) {
             <Form.Group>
                 <Form.Label>Content</Form.Label>
                 <Form.Control
-                as="textarea" 
-                rows={6} 
-                name="content" 
-                value={content} 
-                onChange={handleChange} />
+                    as="textarea"
+                    rows={6}
+                    name="content"
+                    value={content}
+                    onChange={handleChange} />
             </Form.Group>
 
             {errors?.content?.map((message, idx) => (
@@ -128,6 +143,21 @@ function PostCreateForm(props) {
                     {errors.tags[0]}
                 </Alert>
             )}
+        </>
+    );
+
+    const locationErrors = (
+        <>
+            {errors.latitude?.map((msg, i) => (
+                <Alert className={styles.Alert} variant="warning" key={i}>
+                    {msg}
+                </Alert>
+            ))}
+            {errors.longitude?.map((msg, i) => (
+                <Alert className={styles.Alert} variant="warning" key={i}>
+                    {msg}
+                </Alert>
+            ))}
         </>
     );
 
@@ -172,6 +202,9 @@ function PostCreateForm(props) {
                     <Container className={appStyles.Content}>
                         {textFields}
 
+                        <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
+                        {locationErrors}
+
                         <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
                         {tagErrors}
 
@@ -181,7 +214,7 @@ function PostCreateForm(props) {
                         >
                             Delete
                         </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled}>
                             Create
                         </Button>
                     </Container>

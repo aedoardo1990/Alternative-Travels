@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,6 +11,8 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
 import { MoreDropdown } from '../../components/MoreDropdown';
+import PostImage from "../../components/PostImage";
+import PostDetailMap from "../../components/PostDetailMap";
 
 const Post = (props) => {
     const {
@@ -28,11 +30,18 @@ const Post = (props) => {
         postPage,
         setPosts,
         tags,
+        latitude,
+        longitude,
     } = props;
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+    const [rerenderMap, setRerenderMap] = useState(false);
+
+    const handleShowDetails = () => {
+        setRerenderMap(rerenderMap ? false : true);
+    };
 
     const postDetails = (
         <Row className="mt-2">
@@ -51,6 +60,9 @@ const Post = (props) => {
                         </ListGroup.Item>
                     )}
                 </ListGroup>
+            </Col>
+            <Col md={5} className="pb-2 pt-1 pt-md-0">
+                <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />
             </Col>
         </Row>
     );
