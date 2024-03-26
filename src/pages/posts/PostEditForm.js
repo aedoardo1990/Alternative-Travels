@@ -52,7 +52,7 @@ function PostEditForm(props) {
         };
 
         handleMount();
-    }, [history, id, postData, hasLoaded]);
+    }, [history, id, showMessage, postData, hasLoaded]);
 
     const handleChange = (event) => {
         setPostData({
@@ -102,9 +102,7 @@ function PostEditForm(props) {
             history.push(`/posts/${id}`);
         } catch (err) {
             console.log(err);
-            if (err.response?.status !== 401) {
-                setErrors(err.response?.data);
-            }
+            setErrors(err.response?.data);
         }
     };
 

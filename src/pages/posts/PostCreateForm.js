@@ -80,10 +80,7 @@ function PostCreateForm(props) {
             const { data } = await axiosReq.post('/posts/', formData);
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            console.log(err);
-            if (err.response?.status !== 401) {
-                setErrors(err.response?.data);
-            }
+            setErrors(err.response?.data);
         }
     };
 
@@ -115,7 +112,7 @@ function PostCreateForm(props) {
                 value={content} 
                 onChange={handleChange} />
             </Form.Group>
-            
+
             {errors?.content?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
