@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from "../../styles/Post.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";

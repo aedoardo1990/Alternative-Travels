@@ -16,6 +16,7 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import TagField from "../../components/TagField";
+import Asset from "../../components/Asset";
 
 function PostEditForm(props) {
     const { showMessage } = props;
@@ -33,21 +34,25 @@ function PostEditForm(props) {
     const imageInput = useRef(null);
     const history = useHistory();
     const { id } = useParams();
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
         const handleMount = async () => {
+            if (!hasLoaded) {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}`);
+                setHasLoaded(true);
                 const { title, content, image, is_owner, tags } = data;
 
                 is_owner ? setPostData({ title: title, content: content, image: image, tags: tags }) : history.push("/");
             } catch (err) {
                 console.log(err);
             }
+        }
         };
 
         handleMount();
-    }, [history, id, postData]);
+    }, [history, id, postData, hasLoaded]);
 
     const handleChange = (event) => {
         setPostData({
@@ -81,10 +86,6 @@ function PostEditForm(props) {
         formData.append('title', title);
         formData.append('content', content);
 
-        if (imageInput?.current?.files[0]) {
-            formData.append('image', imageInput.current.files[0]);
-        }
-
         // Solution for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -93,7 +94,9 @@ function PostEditForm(props) {
         } else {
             formData.append("tags", []);
         }
-
+        if (imageInput?.current?.files[0]) {
+            formData.append('image', imageInput.current.files[0]);
+        }
         try {
             await axiosReq.put(`/posts/${id}`, formData);
             history.push(`/posts/${id}`);
@@ -142,6 +145,8 @@ function PostEditForm(props) {
     );
 
     return (
+        <>
+      {hasLoaded ? (
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
@@ -169,8 +174,9 @@ function PostEditForm(props) {
                 <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                     <Container className={appStyles.Content}>
                         {textFields}
-                        <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />
-                        {tagErrors}
+
+                       {title && <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />}
+                       {tagErrors}
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Blue}`}
                             onClick={() => history.goBack()}
@@ -184,6 +190,10 @@ function PostEditForm(props) {
                 </Col>
             </Row>
         </Form >
+      ) : (
+      <Asset spinner />
+      )}
+    </>
     );
 }
 

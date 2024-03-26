@@ -65,11 +65,9 @@ function PostCreateForm(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-
         formData.append('title', title);
         formData.append('content', content);
         formData.append('image', imageInput.current.files[0]);
-
         //for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -78,7 +76,6 @@ function PostCreateForm(props) {
         } else {
             formData.append("tags", []);
         }
-
         try {
             const { data } = await axiosReq.post('/posts/', formData);
             history.push(`/posts/${data.id}`);
@@ -96,8 +93,13 @@ function PostCreateForm(props) {
 
             <Form.Group>
                 <Form.Label>Title</Form.Label>
-                <Form.Control type="text" name="title" value={title} onChange={handleChange} />
+                <Form.Control
+                type="text" 
+                name="title" 
+                value={title} 
+                onChange={handleChange} />
             </Form.Group>
+
             {errors?.title?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
@@ -106,8 +108,14 @@ function PostCreateForm(props) {
 
             <Form.Group>
                 <Form.Label>Content</Form.Label>
-                <Form.Control as="textarea" rows={6} name="content" value={content} onChange={handleChange} />
+                <Form.Control
+                as="textarea" 
+                rows={6} 
+                name="content" 
+                value={content} 
+                onChange={handleChange} />
             </Form.Group>
+            
             {errors?.content?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
