@@ -12,7 +12,6 @@ const MapPopup = (props) => {
     id,
     owner,
     title,
-    audio_file,
     image,
     profile_id,
     profile_avatar,
