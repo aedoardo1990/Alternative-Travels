@@ -62,7 +62,7 @@ const Post = (props) => {
                 </ListGroup>
             </Col>
             <Col md={5} className="pb-2 pt-1 pt-md-0">
-                <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />
+            { latitude && longitude &&<PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />}
             </Col>
         </Row>
     );

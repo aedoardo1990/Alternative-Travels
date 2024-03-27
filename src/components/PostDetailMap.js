@@ -16,11 +16,17 @@ const PostDetailMap = ({ post, rerender }) => {
   }, [post, rerender]);
 
   return (
+    <div>
+    {post.location ? (
     <MapContainer key={key} className={styles.Map} center={location} zoom={6} scrollWheelZoom={false}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker key={post.id} position={location}></Marker>
-    </MapContainer>
-  );
+    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <Marker key={post.id} position={location}></Marker>
+  </MapContainer>
+    ) : (
+    <span> loading... </span>
+    )}
+    </div>
+    );
 };
 
 export default PostDetailMap;

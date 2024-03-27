@@ -46,7 +46,7 @@ function PostEditForm(props) {
                     const { data } = await axiosReq.get(`/posts/${id}`);
                     setHasLoaded(true);
                     const { title, content, image, is_owner, tags, latitude, longitude } = data;
-
+                    console.log(latitude, longitude)
                     is_owner ? setPostData({
                         title: title,
                         content: content,
@@ -212,12 +212,12 @@ function PostEditForm(props) {
                                 {title && <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />}
                                 {tagErrors}
 
-                                <LocationField
+                                { location.length &&<LocationField
                                     sendLocation={setLocation}
                                     showMessage={showMessage}
                                     previousLocation={location}
                                     setButtonDisabled={setButtonDisabled}
-                                />
+                                />}
                                 {locationErrors}
                                 <Button
                                     className={`${btnStyles.Button} ${btnStyles.Blue}`}
