@@ -4,24 +4,22 @@ import styles from "../styles/PostDetailMap.module.css";
 
 const PostDetailMap = ({ post, rerender }) => {
   const [key, setKey] = useState(0);
-  const [location, setLocation] = useState({lat:null,lng:null});
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     setLocation(post.location);
 
-    // Force the component to re-render when the post details are displayed
-    // in the PostListPage component by assigning a new key.
+    // Force the component to re-render when the sound details are displayed
+    // in the PostsPage component by assigning a new key.
     // Instructions from: https://stackoverflow.com/questions/35792275/how-to-force-remounting-on-react-components
     setKey((previous) => previous + 1);
   }, [post, rerender]);
 
   return (
-    <div>
-    <MapContainer center={location} key={key} className={styles.Map} zoom={6} scrollWheelZoom={false}>
+    <MapContainer key={key} className={styles.Map} center={location} zoom={6} scrollWheelZoom={false}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {location.lat && location.lng && <Marker position={[location.lat, location.lng]} />}
+      <Marker key={post.id} position={location}></Marker>
     </MapContainer>
-    </div>
   );
 };
 
