@@ -39,9 +39,9 @@ const Post = (props) => {
     const history = useHistory();
     const [rerenderMap, setRerenderMap] = useState(false);
 
-    //const handleShowDetails = () => {
-    //    setRerenderMap(rerenderMap ? false : true);
-    //};
+    const handleShowDetails = () => {
+        setRerenderMap(rerenderMap ? false : true);
+    };
 
     const postDetails = (
         <Row className="mt-2">

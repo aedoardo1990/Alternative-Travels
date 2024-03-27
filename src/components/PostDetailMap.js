@@ -9,7 +9,7 @@ const PostDetailMap = ({ post, rerender }) => {
   useEffect(() => {
     setLocation(post.location);
 
-    // Force the component to re-render when the sound details are displayed
+    // Force the component to re-render when the post details are displayed
     // in the PostsPage component by assigning a new key.
     // Instructions from: https://stackoverflow.com/questions/35792275/how-to-force-remounting-on-react-components
     setKey((previous) => previous + 1);
