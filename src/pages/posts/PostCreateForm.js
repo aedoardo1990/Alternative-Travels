@@ -30,12 +30,14 @@ function PostCreateForm(props) {
         title: '',
         content: '',
         image: '',
+        video: '',
         tags: [],
         location: [],
     });
 
-    const { title, content, image, tags, location } = postData;
+    const { title, content, image, video, tags, location } = postData;
     const imageInput = useRef(null);
+    const videoInput = useRef(null);
     const history = useHistory();
     const [buttonDisabled, setButtonDisabled] = useState(false);
 
@@ -72,15 +74,29 @@ function PostCreateForm(props) {
         }
     };
 
+    const handleChangeVideo = (event) => {
+        if (event.target.files.length) {
+            URL.revokeObjectURL(video);
+            setPostData({
+                ...postData,
+                image: URL.createObjectURL(event.target.files[0]),
+            });
+        }
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setButtonDisabled(true);
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        formData.append('image', imageInput.current.files[0]);
         formData.append('latitude', location[0]);
         formData.append('longitude', location[1]);
+        if (image.length) {
+            formData.append('image', imageInput.current.files[0]);
+        } else {
+            formData.append('video', videoInput.current.files[0]);
+        }
         //for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -188,7 +204,7 @@ function PostCreateForm(props) {
                                     <Asset src={Upload} message="Click or tap to upload an image" />
                                 </Form.Label>
                             )}
-                            <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
+                            <Form.File id="image-upload" accept="image/*, videos/*" onChange={handleChangeImage} ref={imageInput} />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
