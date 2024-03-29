@@ -26,6 +26,7 @@ const Post = (props) => {
         title,
         content,
         image,
+        video,
         updated_at,
         postPage,
         setPosts,
@@ -62,7 +63,7 @@ const Post = (props) => {
                 </ListGroup>
             </Col>
             <Col md={5} className="pb-2 pt-1 pt-md-0">
-            { latitude && longitude &&<PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />}
+                {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />}
             </Col>
         </Row>
     );
@@ -131,9 +132,18 @@ const Post = (props) => {
                     </div>
                 </Media>
             </Card.Body>
-            <Link to={`/posts/${id}`}>
-                <Card.Img src={image} alt={title} />
-            </Link>
+            {/*It renders an image or a video post uploaded by the user */}
+
+            {!image?.includes("default_post_g5kn5h") ? (
+                <Link to={`/posts/${id}`}>
+                    <Card.Img src={image} alt={title} />
+                </Link>
+            ) : (
+                <Link to={`/posts/${id}`}>
+                    <video src={video} width={400} height={400} controls />
+                </Link>
+            )}
+            
             <Card.Body>
                 {title && <Card.Title className='text-center'>{title}</Card.Title>}
                 {content && <Card.Text>{content}</Card.Text>}
