@@ -19,7 +19,7 @@ import TagField from "../../components/TagField";
 import LocationField from "../../components/LocationField";
 import Asset from "../../components/Asset";
 
-function PostEditForm(props) {
+function PostEditImageForm(props) {
     const { showMessage } = props;
     const [errors, setErrors] = useState({});
 
@@ -239,4 +239,4 @@ function PostEditForm(props) {
     );
 }
 
-export default PostEditForm;
+export default PostEditImageForm;

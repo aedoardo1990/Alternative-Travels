@@ -68,9 +68,14 @@ const Post = (props) => {
         </Row>
     );
 
-    const handleEdit = () => {
-        history.push(`/posts/${id}/edit`);
+    const handleEditImage = () => {
+        history.push(`/posts/${id}/edit-image`);
     };
+
+    const handleEditVideo = () => {
+        history.push(`/posts/${id}/edit-video`);
+    };
+
 
     const handleDelete = async () => {
         try {
@@ -123,11 +128,18 @@ const Post = (props) => {
                     </Link>
                     <div className='d-flex align-items-center'>
                         <span>{updated_at}</span>
+                        {/*It renders edit for image or a video post */}
                         {is_owner && postPage && (
-                            <MoreDropdown
-                                handleEdit={handleEdit}
+                            !image?.includes("default_post_g5kn5h") ? 
+                            (<MoreDropdown
+                                handleEdit={handleEditImage}
+                                handleDelete={handleDelete}
+                            />) : (
+                                <MoreDropdown
+                                handleEdit={handleEditVideo}
                                 handleDelete={handleDelete}
                             />
+                            )
                         )}
                     </div>
                 </Media>
@@ -143,7 +155,7 @@ const Post = (props) => {
                     <video src={video} width={400} height={400} controls />
                 </Link>
             )}
-            
+
             <Card.Body>
                 {title && <Card.Title className='text-center'>{title}</Card.Title>}
                 {content && <Card.Text>{content}</Card.Text>}

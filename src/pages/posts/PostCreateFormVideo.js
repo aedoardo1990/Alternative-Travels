@@ -170,14 +170,14 @@ function PostCreateFormVideo(props) {
                         <Form.Group className="text-center">
                             {video ? (
                                 <>
-                                <figure>
-                                    <video className={appStyles.Image} src={video} controls width="100%" rounded="true" />
+                                    <figure>
+                                        <video className={appStyles.Image} src={video} controls width="100%" rounded="true" />
                                     </figure>
-                                <div>
-                                    <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
-                                        Change video
-                                    </Form.Label>
-                                </div>
+                                    <div>
+                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="video-upload">
+                                            Change video
+                                        </Form.Label>
+                                    </div>
                                 </>
                             ) : (
                                 <Form.Label
