@@ -5,7 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 import './api/axiosDefaults';
 import SignUpForm from './pages/auth/SignUpForm';
 import LoginForm from './pages/auth/LoginForm';
-import PostCreateForm from './pages/posts/PostCreateForm';
+import SelectMedia from "./pages/posts/SelectMedia";
+import PostCreateFormImage from "./pages/posts/PostCreateFormImage";
+import PostCreateFormVideo from "./pages/posts/PostCreateFormVideo";
 import PostPage from './pages/posts/PostPage';
 import PostsPage from './pages/posts/PostsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
@@ -45,7 +47,9 @@ function App() {
           />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/posts/add" render={() => <PostCreateForm />} />
+          <Route exact path="/posts/add" render={() => <SelectMedia />} />
+          <Route exact path="/posts/add/image" render={() => <PostCreateFormImage />} />
+          <Route exact path="/posts/add/video" render={() => <PostCreateFormVideo />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />

@@ -21,7 +21,7 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function PostCreateForm(props) {
+function PostCreateFormImage(props) {
     useRedirect('loggedOut');
     const { showMessage } = props;
     const [errors, setErrors] = useState({});
@@ -30,14 +30,12 @@ function PostCreateForm(props) {
         title: '',
         content: '',
         image: '',
-        video: '',
         tags: [],
         location: [],
     });
 
-    const { title, content, image, video, tags, location } = postData;
+    const { title, content, image, tags, location } = postData;
     const imageInput = useRef(null);
-    const videoInput = useRef(null);
     const history = useHistory();
     const [buttonDisabled, setButtonDisabled] = useState(false);
 
@@ -74,16 +72,6 @@ function PostCreateForm(props) {
         }
     };
 
-    const handleChangeVideo = (event) => {
-        if (event.target.files.length) {
-            URL.revokeObjectURL(video);
-            setPostData({
-                ...postData,
-                image: URL.createObjectURL(event.target.files[0]),
-            });
-        }
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         setButtonDisabled(true);
@@ -92,11 +80,7 @@ function PostCreateForm(props) {
         formData.append('content', content);
         formData.append('latitude', location[0]);
         formData.append('longitude', location[1]);
-        if (image.length) {
-            formData.append('image', imageInput.current.files[0]);
-        } else {
-            formData.append('video', videoInput.current.files[0]);
-        }
+        formData.append('image', imageInput.current.files[0]);
         //for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
         if (tags.length) {
             tags.forEach((tag, index) => {
@@ -204,7 +188,7 @@ function PostCreateForm(props) {
                                     <Asset src={Upload} message="Click or tap to upload an image" />
                                 </Form.Label>
                             )}
-                            <Form.File id="image-upload" accept="image/*, videos/*" onChange={handleChangeImage} ref={imageInput} />
+                            <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
@@ -217,7 +201,7 @@ function PostCreateForm(props) {
                 <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                     <Container className={appStyles.Content}>
                         {textFields}
-                        
+
                         <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
                         {locationErrors}
 
@@ -240,4 +224,4 @@ function PostCreateForm(props) {
     );
 }
 
-export default PostCreateForm;
+export default PostCreateFormImage;

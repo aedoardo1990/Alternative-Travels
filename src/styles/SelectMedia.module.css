@@ -1,0 +1,43 @@
+.Choice {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.first {
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    padding: 1rem 0.5rem 0 0.5rem;
+    margin-right: 3rem;
+    border-radius: 2px; 
+}
+
+.ImageIcon {
+    height: 4rem;
+    width: 4rem;
+    margin-left: 4rem;
+}
+
+.second {
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    padding: 1rem 0.5rem 0 0.5rem;
+    margin-left: 3rem;
+    border-radius: 2px; 
+}
+
+.Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: 1rem;
+    color: #2d2d3E;
+    font-weight: bold;
+}
+
+.Link:hover {
+    text-decoration: none;
+    color: #2d2d3E;
+}
