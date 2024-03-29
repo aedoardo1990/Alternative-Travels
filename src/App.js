@@ -18,6 +18,7 @@ import UsernameForm from './pages/profiles/UsernameForm'
 import UserPasswordForm from './pages/profiles/UserPasswordForm';
 import ProfileEditForm from './pages/profiles/ProfileEditForm';
 import Map from "./pages/map/Map";
+import Notifications from "./pages/notifications/Notifications";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
           <Route exact path="/map" render={() => <Map style={{ width: "100%", height: "100vh"}} zoom={13} />} />
+          <Route exact path="/notifications" render={() => <Notifications />} />
           <Route render={() => <h1>Page not found <i class="fa-solid fa-circle-radiation fa-beat-fade"></i></h1>} />
         </Switch>
       </Container>

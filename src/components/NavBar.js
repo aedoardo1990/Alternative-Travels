@@ -32,13 +32,16 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <NavLink to='/newsfeed' className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-regular fa-newspaper"></i> Newsfeed
+        <i className="fas fa-regular fa-newspaper"></i> Feed
       </NavLink>
       <NavLink to='/liked-posts' className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-solid fa-thumbs-up"></i> Liked
       </NavLink>
       <NavLink to='/map' className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-earth-europe"></i> Map
+      </NavLink>
+      <NavLink to='/notifications' className={styles.NavLink} activeClassName={styles.Active}>
+        <i className="fas fa-solid fa-bell"></i> News
       </NavLink>
       <NavLink to='/' className={styles.NavLink} onClick={handleSignOut}>
         <i className="fas fa-solid fa-right-from-bracket"></i> Logout
