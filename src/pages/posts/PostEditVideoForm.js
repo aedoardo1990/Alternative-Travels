@@ -188,7 +188,7 @@ function PostEditVideoForm(props) {
                             >
                                 <Form.Group className="text-center">
                                     <figure>
-                                        <video className={appStyles.Image} src={videoInput} rounded />
+                                        <video className={appStyles.Image} src={video} controls width="100%" rounded="True" />
                                     </figure>
                                     <div>
                                         <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="video-upload">
