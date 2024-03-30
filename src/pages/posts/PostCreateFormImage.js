@@ -215,7 +215,7 @@ function PostCreateFormImage(props) {
                         >
                             Delete
                         </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled}>
+                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled} >
                             Create
                         </Button>
                     </Container>
