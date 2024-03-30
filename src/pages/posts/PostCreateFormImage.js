@@ -8,7 +8,9 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 import Upload from "../../assets/upload.png";
 
@@ -92,10 +94,12 @@ function PostCreateFormImage(props) {
         }
         try {
             const { data } = await axiosReq.post('/posts/', formData);
+            successToast("Hey there!");
             setButtonDisabled(false);
             history.push(`/posts/${data.id}`);
         } catch (err) {
             setErrors(err.response?.data);
+            errorToast("Oops, something went wrong!");
             setButtonDisabled(false);
         }
     };
@@ -218,6 +222,7 @@ function PostCreateFormImage(props) {
                         <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled} >
                             Create
                         </Button>
+                        <ToastContainer />
                     </Container>
                 </Col>
             </Row>
