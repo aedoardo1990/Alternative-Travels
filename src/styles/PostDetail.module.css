@@ -43,18 +43,3 @@
   .HeartNotLiked:hover {
     color: #1B7AA6;
   }
-  
-  .AccordionHeader * {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.8rem;
-  }
-  
-  .AccordionHeader > button {
-    z-index: 1 !important;
-    box-shadow: none !important;
-  }
-  
-  .AccordionHeader *[aria-expanded="true"] {
-    background-color: #f1f2f3;
-    color: #000000;
-  }

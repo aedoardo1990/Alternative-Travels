@@ -6,6 +6,7 @@ import Avatar from "../../components/Avatar";
 
 import postDetailStyles from "../../styles/PostDetail.module.css";
 import PostImage from "../../components/PostImage";
+import PostVideo from "../../components/PostVideo";
 
 const MapPopup = (props) => {
   const {
@@ -13,6 +14,7 @@ const MapPopup = (props) => {
     owner,
     title,
     image,
+    video,
     profile_id,
     profile_image,
     created_at,
@@ -31,7 +33,11 @@ const MapPopup = (props) => {
         title="Go to post page"
         className="mb-3 text-dark d-flex justify-content-start align-items-center"
       >
-        <PostImage src={image} height={50} />
+        {!image?.includes("default_post_g5kn5h") ? (
+          <PostImage src={image} height={50} />
+        ) : (
+          <PostVideo src={video} height={50} />
+        )}
         <span className="fs-6">
           {title}{" "}
           <small>
