@@ -6,8 +6,10 @@ import Button from "react-bootstrap/Button";
 import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/TagField.module.css";
 import LocationPicker from "./LocationPicker";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "./Toasts";
 
-const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonDisabled }) => {
+const LocationField = ({ sendLocation, previousLocation, setButtonDisabled }) => {
   const [locationStatus, setLocationStatus] = useState(
     previousLocation ? previousLocation : "Please provide location data."
   );
@@ -48,14 +50,13 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation([position.coords.latitude, position.coords.longitude]);
-          //showMessage("success", "Location data retrieved successfully.");
+          successToast("Geolocation loaded succesfully")
           setLocationChanged(true);
           setShowTooltip(false);
           setButtonDisabled(false);
         },
-        (error) => {
-          // console.log(error);
-          showMessage("warning", "Failed to retrieve location data. Please try again.");
+        (err) => {
+          errorToast("Failed to retrieve geolocation")
           setLocationStatus("Could not retrieve location.");
         }
       );
