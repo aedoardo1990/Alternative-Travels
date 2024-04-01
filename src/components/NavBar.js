@@ -7,6 +7,8 @@ import { useCurrentUser, useSetCurrentUser, } from '../contexts/CurrentUserConte
 import Avatar from './Avatar';
 import axios from 'axios';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "./Toasts";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -18,8 +20,9 @@ const NavBar = () => {
     try {
       await axios.post('dj-rest-auth/logout/');
       setCurrentUser(null);
+      successToast("Successfully logged out!");
     } catch (err) {
-      console.log(err)
+      errorToast("Oops, something went wrong!");
     }
   };
 
