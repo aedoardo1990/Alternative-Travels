@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
@@ -18,10 +17,10 @@ import { axiosReq } from "../../api/axiosDefaults";
 import TagField from "../../components/TagField";
 import LocationField from "../../components/LocationField";
 import Asset from "../../components/Asset";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
-function PostEditImageForm(props) {
-    const { showMessage } = props;
-    const [errors, setErrors] = useState({});
+function PostEditImageForm() {
 
     const [postData, setPostData] = useState({
         title: '',
@@ -62,7 +61,7 @@ function PostEditImageForm(props) {
         };
 
         handleMount();
-    }, [history, id, showMessage, postData, hasLoaded]);
+    }, [history, id, postData, hasLoaded]);
 
     const handleChange = (event) => {
         setPostData({
@@ -118,11 +117,31 @@ function PostEditImageForm(props) {
         }
         try {
             await axiosReq.put(`/posts/${id}`, formData);
+            successToast("Post edited successfully!");
             setButtonDisabled(false);
             history.push(`/posts/${id}`);
         } catch (err) {
-            console.log(err);
-            setErrors(err.response?.data);
+            if (err.response.data.title) {
+                // display if there are errors in title field
+                errorToast(err.response.data.title[0]);
+            } else if (err.response.data.image) {
+                // display errors for image field
+                errorToast(err.response.data.image[0]);
+            } else if (err.response.data.content) {
+                // display errors for content field
+                errorToast(err.response.data.content[0]);
+            } else if (err.response.data.latitude) {
+                // display errors for latitude field
+                errorToast(err.response.data.latitude[0]);
+            } else if (err.response.data.longitude) {
+                // display errors for longitude field
+                errorToast(err.response.data.longitude[0]);
+            } else if (err.response.data.tags) {
+                // display errors for tags field
+                errorToast(err.response.data.tags[0]);
+            } else {
+                errorToast("Oops, something went wrong!");
+            }
             setButtonDisabled(false);
         }
     };
@@ -135,47 +154,13 @@ function PostEditImageForm(props) {
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" name="title" value={title} onChange={handleChange} />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
 
             <Form.Group>
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="textarea" rows={6} name="content" value={content} onChange={handleChange} />
             </Form.Group>
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
+            
         </div>
-    );
-
-    const tagErrors = (
-        <>
-            {errors.tags && (
-                <Alert className={styles.Alert} variant="warning">
-                    {errors.tags[0]}
-                </Alert>
-            )}
-        </>
-    );
-
-    const locationErrors = (
-        <>
-            {errors.latitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-            {errors.longitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-        </>
     );
 
     return (
@@ -198,27 +183,21 @@ function PostEditImageForm(props) {
                                     </div>
                                     <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
                                 </Form.Group>
-                                {errors?.image?.map((message, idx) => (
-                                    <Alert variant="warning" key={idx}>
-                                        {message}
-                                    </Alert>
-                                ))}
+                                
                             </Container>
                         </Col>
                         <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                             <Container className={appStyles.Content}>
                                 {textFields}
 
-                                {title && <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />}
-                                {tagErrors}
+                                {title && <TagField sendTags={setTags} previousTags={tags} />}
 
                                 { location.length &&<LocationField
                                     sendLocation={setLocation}
-                                    showMessage={showMessage}
                                     previousLocation={location}
                                     setButtonDisabled={setButtonDisabled}
                                 />}
-                                {locationErrors}
+                                
                                 <Button
                                     className={`${btnStyles.Button} ${btnStyles.Blue}`}
                                     onClick={() => history.goBack()}
