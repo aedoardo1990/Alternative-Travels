@@ -130,13 +130,18 @@ const Post = (props) => {
         <Container>
             <Card className={styles.Post}>
                 <Card.Body>
-                    <Media className='align-items-center justify-content-between'>
-                        <Link to={`/profiles/${profile_id}`} className="fw-bold">
-                            <Avatar src={profile_image} height={40}/>
-                            {owner}
-                        </Link>
+                    <div>
+
+                    </div>
+                    <Media className='d-flex align-items-start justify-content-between'>
                         <div className='d-flex align-items-center'>
-                            <span>{updated_at}</span>
+                            <Link to={`/profiles/${profile_id}`} className="fw-bold">
+                                <Avatar src={profile_image} height={50} />
+                                {owner}
+                            </Link>
+                            <span className="mx-5">{updated_at}</span>
+                        </div>
+                        <div className='d-flex align-items-center'>
                             {/*It renders dropdown for edit/delete image/video post */}
                             {is_owner && postPage && (
                                 !image?.includes("default_post_g5kn5h") ?
