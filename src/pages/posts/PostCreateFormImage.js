@@ -5,10 +5,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";
 
@@ -24,10 +22,8 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function PostCreateFormImage(props) {
+function PostCreateFormImage() {
     useRedirect('loggedOut');
-    const { showMessage } = props;
-    const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
         title: '',
@@ -94,12 +90,25 @@ function PostCreateFormImage(props) {
         }
         try {
             const { data } = await axiosReq.post('/posts/', formData);
-            successToast("Hey there!");
+            successToast("Post successfully created!");
             setButtonDisabled(false);
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            setErrors(err.response?.data);
-            errorToast("Oops, something went wrong!");
+            if (err.response.data.title) {
+                errorToast(err.response.data.title[0]);
+            } else if (err.response.data.image) {
+                errorToast(err.response.data.image[0]);
+            } else if (err.response.data.content) {
+                errorToast(err.response.data.content[0]);
+            } else if (err.response.data.latitude) {
+                errorToast(err.response.data.latitude[0]);
+            } else if (err.response.data.longitude) {
+                errorToast(err.response.data.longitude[0]);
+            } else if (err.response.data.tags) {
+                errorToast(err.response.data.tags[0]);
+            } else {
+                errorToast("Oops, something went wrong!");
+            }
             setButtonDisabled(false);
         }
     };
@@ -117,12 +126,6 @@ function PostCreateFormImage(props) {
                     onChange={handleChange} />
             </Form.Group>
 
-            {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
             <Form.Group>
                 <Form.Label>Content</Form.Label>
                 <Form.Control
@@ -133,37 +136,7 @@ function PostCreateFormImage(props) {
                     onChange={handleChange} />
             </Form.Group>
 
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
         </div>
-    );
-
-    const tagErrors = (
-        <>
-            {errors.tags && (
-                <Alert className={styles.Alert} variant="warning">
-                    {errors.tags[0]}
-                </Alert>
-            )}
-        </>
-    );
-
-    const locationErrors = (
-        <>
-            {errors.latitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-            {errors.longitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-        </>
     );
 
     return (
@@ -195,11 +168,6 @@ function PostCreateFormImage(props) {
                             )}
                             <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
                         </Form.Group>
-                        {errors?.image?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
                     </Container>
                 </Col>
 
@@ -207,11 +175,9 @@ function PostCreateFormImage(props) {
                     <Container className={appStyles.Content}>
                         {textFields}
 
-                        <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
-                        {locationErrors}
+                        <LocationField sendLocation={setLocation} setButtonDisabled={setButtonDisabled} />
 
-                        <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
-                        {tagErrors}
+                        <TagField sendTags={setTags} currentTags={tags} className="d-md-none" />
 
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Blue}`}
@@ -222,7 +188,6 @@ function PostCreateFormImage(props) {
                         <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled} >
                             Create
                         </Button>
-                        <ToastContainer />
                     </Container>
                 </Col>
             </Row>
