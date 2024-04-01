@@ -17,7 +17,6 @@ import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from "../../hooks/useRedirect";
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";
-import { ToastContainer } from "react-toastify";
 
 function SignInForm() {
     const setCurrentUser = useSetCurrentUser();
@@ -28,7 +27,7 @@ function SignInForm() {
         password: '',
     });
 
-    const {username, password} = loginData;
+    const { username, password } = loginData;
 
     const [errors, setErrors] = useState({});
 
@@ -36,26 +35,26 @@ function SignInForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const {data} = await axios.post('/dj-rest-auth/login/', loginData);
+            const { data } = await axios.post('/dj-rest-auth/login/', loginData);
             setCurrentUser(data.user);
             history.goBack();
             successToast("Successfully logged in as " + data.user.username + "!");
         } catch (err) {
             setErrors(err.response?.data);
-                   // Check if response status is 400
-                if (err.response.data.non_field_errors) {
-                  // Display error message when non field errors are present
-                  errorToast(err.response.data.non_field_errors[0]);
-                } else if (err.response.data.username) {
-                  // Check username errors
-                  errorToast(err.response.data.username[0]);
-                } else if (err.response.data.password) {
-                  // Check password errors
-                  errorToast(err.response.data.password[0]);
-                } else {
-                  // Generic error message 
-                  errorToast("Oops, something went wrong!");
-                }
+            // Check if response status is 400
+            if (err.response.data.non_field_errors) {
+                // Display error message when non field errors are present
+                errorToast(err.response.data.non_field_errors[0]);
+            } else if (err.response.data.username) {
+                // Display username errors
+                errorToast(err.response.data.username[0]);
+            } else if (err.response.data.password) {
+                // display password errors
+                errorToast(err.response.data.password[0]);
+            } else {
+                // display generic error message 
+                errorToast("Oops, something went wrong!");
+            }
         }
     };
 
@@ -87,7 +86,7 @@ function SignInForm() {
                         <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
                             Login
                         </Button>
-                        
+
                     </Form>
 
                 </Container>
