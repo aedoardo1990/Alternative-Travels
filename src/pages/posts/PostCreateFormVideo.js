@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import Asset from "../../components/Asset";
 
 import Upload from "../../assets/upload.png";
@@ -15,15 +14,15 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import TagField from "../../components/TagField";
 import LocationField from "../../components/LocationField";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function PostCreateFormVideo(props) {
+function PostCreateFormVideo() {
     useRedirect('loggedOut');
-    const { showMessage } = props;
-    const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
         title: '',
@@ -91,9 +90,30 @@ function PostCreateFormVideo(props) {
         try {
             const { data } = await axiosReq.post('/posts/', formData);
             setButtonDisabled(false);
+            successToast("Post successfully created!");
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            setErrors(err.response?.data);
+            if (err.response.data.title) {
+                // display errors of title field
+                errorToast(err.response.data.title[0]);
+            } else if (err.response.data.video) {
+                // display errors for video field
+                errorToast(err.response.data.video[0]);
+            } else if (err.response.data.content) {
+                // display errors for content field
+                errorToast(err.response.data.content[0]);
+            } else if (err.response.data.latitude) {
+                // display errors for latitude field
+                errorToast(err.response.data.latitude[0]);
+            } else if (err.response.data.longitude) {
+                // display errors for longitude field
+                errorToast(err.response.data.longitude[0]);
+            } else if (err.response.data.tags) {
+                // display errors for tags field
+                errorToast(err.response.data.tags[0]);
+            } else {
+                errorToast("Oops, something went wrong!");
+            }
             setButtonDisabled(false);
         }
     };
@@ -111,12 +131,6 @@ function PostCreateFormVideo(props) {
                     onChange={handleChange} />
             </Form.Group>
 
-            {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
             <Form.Group>
                 <Form.Label>Content</Form.Label>
                 <Form.Control
@@ -127,37 +141,7 @@ function PostCreateFormVideo(props) {
                     onChange={handleChange} />
             </Form.Group>
 
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
         </div>
-    );
-
-    const tagErrors = (
-        <>
-            {errors.tags && (
-                <Alert className={styles.Alert} variant="warning">
-                    {errors.tags[0]}
-                </Alert>
-            )}
-        </>
-    );
-
-    const locationErrors = (
-        <>
-            {errors.latitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-            {errors.longitude?.map((msg, i) => (
-                <Alert className={styles.Alert} variant="warning" key={i}>
-                    {msg}
-                </Alert>
-            ))}
-        </>
     );
 
     return (
@@ -189,11 +173,7 @@ function PostCreateFormVideo(props) {
                             )}
                             <Form.File id="video-upload" accept="video/*" onChange={handleChangeVideo} ref={videoInput} />
                         </Form.Group>
-                        {errors?.video?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
+
                     </Container>
                 </Col>
 
@@ -201,11 +181,9 @@ function PostCreateFormVideo(props) {
                     <Container className={appStyles.Content}>
                         {textFields}
 
-                        <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
-                        {locationErrors}
+                        <LocationField sendLocation={setLocation} setButtonDisabled={setButtonDisabled} />
 
-                        <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} className="d-md-none" />
-                        {tagErrors}
+                        <TagField sendTags={setTags} currentTags={tags} className="d-md-none" />
 
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Blue}`}

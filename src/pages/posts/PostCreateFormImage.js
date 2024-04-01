@@ -95,16 +95,22 @@ function PostCreateFormImage() {
             history.push(`/posts/${data.id}`);
         } catch (err) {
             if (err.response.data.title) {
+                // display if there are errors in title field
                 errorToast(err.response.data.title[0]);
             } else if (err.response.data.image) {
+                // display errors for image field
                 errorToast(err.response.data.image[0]);
             } else if (err.response.data.content) {
+                // display errors for content field
                 errorToast(err.response.data.content[0]);
             } else if (err.response.data.latitude) {
+                // display errors for latitude field
                 errorToast(err.response.data.latitude[0]);
             } else if (err.response.data.longitude) {
+                // display errors for longitude field
                 errorToast(err.response.data.longitude[0]);
             } else if (err.response.data.tags) {
+                // display errors for tags field
                 errorToast(err.response.data.tags[0]);
             } else {
                 errorToast("Oops, something went wrong!");
