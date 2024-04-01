@@ -20,8 +20,6 @@ const SignUpForm = () => {
     });
     const { username, password1, password2 } = signUpData;
 
-    const [errors, setErrors] = useState({});
-
     const history = useHistory();
 
     const handleChange = (event) => {
@@ -38,7 +36,6 @@ const SignUpForm = () => {
             history.push("/login");
             successToast("Successfully signed up!");
         } catch (err) {
-            setErrors(err.response?.data);
             // Check for response status 400
             if (err.response.data.non_field_errors){
                 // display error message for non field errors
@@ -84,6 +81,7 @@ const SignUpForm = () => {
                         <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
                             Sign up
                         </Button>
+
                     </Form>
 
                 </Container>

@@ -29,8 +29,6 @@ function SignInForm() {
 
     const { username, password } = loginData;
 
-    const [errors, setErrors] = useState({});
-
     const history = useHistory();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,7 +38,6 @@ function SignInForm() {
             history.goBack();
             successToast("Successfully logged in as " + data.user.username + "!");
         } catch (err) {
-            setErrors(err.response?.data);
             // Check if response status is 400
             if (err.response.data.non_field_errors) {
                 // Display error message when non field errors are present
