@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip, Modal, Container, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
@@ -41,6 +41,11 @@ const Post = (props) => {
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
     const [rerenderMap, setRerenderMap] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     const handleShowDetails = () => {
         setRerenderMap(rerenderMap ? false : true);
@@ -122,73 +127,89 @@ const Post = (props) => {
     };
 
     return (
-        <Card className={styles.Post}>
-            <Card.Body>
-                <Media className='align-items-center justify-content-between'>
-                    <Link to={`/profiles/${profile_id}`}>
-                        <Avatar src={profile_image} height={55} />
-                        {owner}
-                    </Link>
-                    <div className='d-flex align-items-center'>
-                        <span>{updated_at}</span>
-                        {/*It renders edit for image or a video post */}
-                        {is_owner && postPage && (
-                            !image?.includes("default_post_g5kn5h") ? 
-                            (<MoreDropdown
-                                handleEdit={handleEditImage}
-                                handleDelete={handleDelete}
-                            />) : (
-                                <MoreDropdown
-                                handleEdit={handleEditVideo}
-                                handleDelete={handleDelete}
-                            />
-                            )
-                        )}
-                    </div>
-                </Media>
-            </Card.Body>
-            {/*It renders an image or a video post uploaded by the user */}
+        <Container>
+            <Card className={styles.Post}>
+                <Card.Body>
+                    <Media className='align-items-center justify-content-between'>
+                        <Link to={`/profiles/${profile_id}`}>
+                            <Avatar src={profile_image} height={55} />
+                            {owner}
+                        </Link>
+                        <div className='d-flex align-items-center'>
+                            <span>{updated_at}</span>
+                            {/*It renders dropdown for edit/delete image/video post */}
+                            {is_owner && postPage && (
+                                !image?.includes("default_post_g5kn5h") ?
+                                    (<MoreDropdown
+                                        handleEdit={handleEditImage}
+                                        handleShow={handleShow}
+                                    />) : (
+                                        <MoreDropdown
+                                            handleEdit={handleEditVideo}
+                                            handleShow={handleShow}
+                                        />
+                                    )
+                            )}
+                        </div>
+                    </Media>
+                </Card.Body>
 
-            {!image?.includes("default_post_g5kn5h") ? (
-                <Link to={`/posts/${id}`}>
-                    <Card.Img src={image} alt={title} />
-                </Link>
-            ) : (
-                <Link to={`/posts/${id}`}>
-                    <video src={video} width={400} height={400} controls />
-                </Link>
-            )}
-
-            <Card.Body>
-                {title && <Card.Title className='text-center'>{title}</Card.Title>}
-                {content && <Card.Text>{content}</Card.Text>}
-                {postDetails}
-                <div className={styles.PostBar}>
-                    {is_owner ? (
-                        <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
-                            <i className='far fa-thumbs-up' />
-                        </OverlayTrigger>
-                    ) : like_id ? (
-                        <span onClick={handleUnlike}>
-                            <i className={`fas fa-thumbs-up ${styles.ThumbsUp}`} />
-                        </span>
-                    ) : currentUser ? (
-                        <span onClick={handleLike}>
-                            <i className={`far fa-thumbs-up ${styles.ThumbsUpOutline}`} />
-                        </span>
-                    ) : (
-                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like posts</Tooltip>}>
-                            <i className='far fa-thumbs-up' />
-                        </OverlayTrigger>
-                    )}
-                    {likes_count}
+                {/*It renders an image or a video post uploaded by the user */}
+                {!image?.includes("default_post_g5kn5h") ? (
                     <Link to={`/posts/${id}`}>
-                        <i className='far fa-comments' />
+                        <Card.Img src={image} alt={title} />
                     </Link>
-                    {comments_count}
-                </div>
-            </Card.Body>
-        </Card>
+                ) : (
+                    <Link to={`/posts/${id}`}>
+                        <video src={video} width={400} height={400} controls />
+                    </Link>
+                )}
+
+                <Card.Body>
+                    {title && <Card.Title className='text-center'>{title}</Card.Title>}
+                    {content && <Card.Text>{content}</Card.Text>}
+                    {postDetails}
+                    <div className={styles.PostBar}>
+                        {is_owner ? (
+                            <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
+                                <i className='far fa-thumbs-up' />
+                            </OverlayTrigger>
+                        ) : like_id ? (
+                            <span onClick={handleUnlike}>
+                                <i className={`fas fa-thumbs-up ${styles.ThumbsUp}`} />
+                            </span>
+                        ) : currentUser ? (
+                            <span onClick={handleLike}>
+                                <i className={`far fa-thumbs-up ${styles.ThumbsUpOutline}`} />
+                            </span>
+                        ) : (
+                            <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like posts</Tooltip>}>
+                                <i className='far fa-thumbs-up' />
+                            </OverlayTrigger>
+                        )}
+                        {likes_count}
+                        <Link to={`/posts/${id}`}>
+                            <i className='far fa-comments' />
+                        </Link>
+                        {comments_count}
+                    </div>
+                </Card.Body>
+            </Card>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Post</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure to delete the post?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </Container>
     );
 };
 
