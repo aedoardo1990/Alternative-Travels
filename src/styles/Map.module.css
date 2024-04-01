@@ -33,7 +33,7 @@
   }
   
   .Map a:hover {
-    color: #0047AB !important;
+    color: #1B7AA6 !important;
   }
   
   /* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
@@ -78,5 +78,5 @@
   }
   
   .SearchIcon:hover {
-    color: #0047AB;
+    color: #1B7AA6;
   }

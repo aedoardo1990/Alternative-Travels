@@ -14,7 +14,7 @@ const MapPopup = (props) => {
     title,
     image,
     profile_id,
-    profile_avatar,
+    profile_image,
     created_at,
     like_id,
     likes_count,
@@ -62,7 +62,7 @@ const MapPopup = (props) => {
       <div className="d-flex align-items-center justify-content-between border-top border-bottom px-2 py-2 my-2">
         <span>{created_at}</span>
         <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_avatar} height={30} text={owner} />
+          <Avatar src={profile_image} height={30} text={owner} />
         </Link>
       </div>
     </>

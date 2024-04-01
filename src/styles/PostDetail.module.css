@@ -23,7 +23,7 @@
     padding: 2px 6px;
     margin-top: 0.25rem;
     border-radius: 5px;
-    background-color: #d939ab;
+    background-color: #1B7AA6;
     color: #fff;
     font-size: 0.8rem;
   }
@@ -33,15 +33,15 @@
   }
   
   .HeartLiked {
-    color: #d939ab;
+    color: #1B7AA6;
   }
   
   .HeartLiked:hover {
-    color: #a21078;
+    color: #1B7AA6;
   }
   
   .HeartNotLiked:hover {
-    color: #d939ab;
+    color: #1B7AA6;
   }
   
   .AccordionHeader * {
