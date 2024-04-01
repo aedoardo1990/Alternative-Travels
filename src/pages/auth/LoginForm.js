@@ -16,6 +16,9 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from "../../hooks/useRedirect";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
+import { ToastContainer } from "react-toastify";
 
 function SignInForm() {
     const setCurrentUser = useSetCurrentUser();
@@ -37,8 +40,23 @@ function SignInForm() {
             const {data} = await axios.post('/dj-rest-auth/login/', loginData);
             setCurrentUser(data.user);
             history.goBack();
+            successToast("Successfully logged in as " + data.user.username + "!");
         } catch (err) {
             setErrors(err.response?.data);
+                   // Check if response status is 400
+                if (err.response.data.non_field_errors) {
+                  // Display error message when non field errors are present
+                  errorToast(err.response.data.non_field_errors[0]);
+                } else if (err.response.data.username) {
+                  // Check username errors
+                  errorToast(err.response.data.username[0]);
+                } else if (err.response.data.password) {
+                  // Check password errors
+                  errorToast(err.response.data.password[0]);
+                } else {
+                  // Generic error message 
+                  errorToast("Oops, something went wrong!");
+                }
         }
     };
 
@@ -61,29 +79,16 @@ function SignInForm() {
                             <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control className={styles.Input} type="text" placeholder="Username" name="username" value={username} onChange={handleChange} />
                         </Form.Group>
-                        {errors.username?.map((message, idx) =>(
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
-                        ))}
 
                         <Form.Group controlId="password">
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control className={styles.Input} type="password" placeholder="Password" name="password" value={password} onChange={handleChange} />
                         </Form.Group>
-                        {errors.password?.map((message, idx) =>(
-                            <Alert variant="warning" key={idx}>
-                                 {message}
-                            </Alert>
-                            ))}
 
                         <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
                             Login
                         </Button>
-                        {errors.non_field_errors?.map((message, idx) => (
-                            <Alert variant="warning" className="mt-3" key={idx}>{message}
-                            </Alert>
-                            ))}
+                        
                     </Form>
 
                 </Container>
