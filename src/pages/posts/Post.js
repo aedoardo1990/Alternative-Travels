@@ -13,6 +13,8 @@ import { axiosRes } from '../../api/axiosDefaults';
 import { MoreDropdown } from '../../components/MoreDropdown';
 //import PostImage from "../../components/PostImage";
 import PostDetailMap from "../../components/PostDetailMap";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const Post = (props) => {
     const {
@@ -80,9 +82,10 @@ const Post = (props) => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/posts/${id}`);
-            history.goBack();
+            history.goBack('/');
+            successToast("Post deleted successfully!");
         } catch (err) {
-            console.log(err);
+            errorToast("Oops, something went wrong!");
         }
     };
 
