@@ -32,5 +32,5 @@
   
   /* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
   .Map > div > div:nth-child(4) img {
-    filter: hue-rotate(110deg) !important;
+    filter: hue-rotate(200deg) !important;
   }

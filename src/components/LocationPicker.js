@@ -3,11 +3,17 @@ import Button from "react-bootstrap/Button";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import { Icon } from "leaflet";
 import styles from "../styles/LocationPicker.module.css";
 import btnStyles from "../styles/Button.module.css";
 
 function LocationPicker({ onConfirm, onClose, showTooltip, setShowTooltip, currentLocation }) {
   const target = useRef(null);
+  //rendering geolocation icon - credits: https://www.youtube.com/watch?v=jD6813wGdBA&t=165s
+  const customIcon = new Icon ({
+    iconUrl: "https://res.cloudinary.com/duoyolryv/image/upload/v1711978223/marker-icon_qfvc0k.png",
+    iconSize: [38, 38] // icon size
+  })
 
   // Instructions for picking location on map from react-leaflet docs:
   // https://react-leaflet.js.org/docs/example-events/
@@ -21,7 +27,7 @@ function LocationPicker({ onConfirm, onClose, showTooltip, setShowTooltip, curre
       },
     });
 
-    return location === null ? null : <Marker position={location}></Marker>;
+    return location === null ? null : <Marker position={location} icon={customIcon}></Marker>;
   }
 
   const confirmLocation = () => {
