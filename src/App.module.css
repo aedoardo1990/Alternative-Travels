@@ -33,8 +33,9 @@
   }
   
   a {
-    color: #555555;
+    color: black;
     transition: color ease-in-out 0.3s;
+    text-decoration: none;
   }
   
   a:hover {
@@ -81,3 +82,4 @@
   *::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  
