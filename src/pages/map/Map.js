@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 import styles from "../../styles/Map.module.css";
 
 import Form from "react-bootstrap/Form";
@@ -12,6 +13,11 @@ const Map = () => {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState("");
+  //rendering geolocation icon - credits: https://www.youtube.com/watch?v=jD6813wGdBA&t=165s
+  const customIcon = new Icon ({
+    iconUrl: "https://res.cloudinary.com/duoyolryv/image/upload/v1711978223/marker-icon_qfvc0k.png",
+    iconSize: [38, 38] // icon size
+  })
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -60,7 +66,7 @@ const Map = () => {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {hasLoaded ? (
         posts.results.map((post) => (
-          <Marker key={post.id} position={[post.latitude, post.longitude]}>
+          <Marker key={post.id} position={[post.latitude, post.longitude]} icon={customIcon}>
             <Popup className={styles.Popup} minWidth={300}>
               <MapPopup {...post} />
             </Popup>
