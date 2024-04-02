@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Accordion from 'react-bootstrap/Accordion';
 
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
@@ -70,7 +71,7 @@ const Post = (props) => {
                 </ListGroup>
             </Col>
             <Col md={5} className="pb-2 pt-1 pt-md-0">
-                {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />}
+                {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} style={{ width: "100%", height: "100vh"}} zoom={13} />}
             </Col>
         </Row>
     );
@@ -141,7 +142,7 @@ const Post = (props) => {
                             </Link>
                         </div>
                         <div className='d-flex align-items-center'>
-                            <span className="mx-2" style={{fontSize: 14, color: 'grey'}}>{updated_at}</span>
+                            <span className="mx-2" style={{ fontSize: 14, color: 'grey' }}>{updated_at}</span>
                             {/*It renders dropdown for edit/delete image/video post */}
                             {is_owner && postPage && (
                                 !image?.includes("default_post_g5kn5h") ?
@@ -166,14 +167,28 @@ const Post = (props) => {
                     </Link>
                 ) : (
                     <Link to={`/posts/${id}`}>
-                        <video src={video} controls width="100%"/>
+                        <video src={video} controls width="100%" />
                     </Link>
                 )}
 
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
                     {content && <Card.Text>{content}</Card.Text>}
-                    {postDetails}
+                    {postPage ? (
+                        postDetails
+                    ) : (<Accordion>
+                        <Card>
+                            <Card.Header>
+                                <Accordion.Toggle as={Button} variant="link text-decoration-none" eventKey="0" onClick={handleShowDetails}>
+                                    Geolocation of this beauty
+                                </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body>{postDetails}</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
+                    )}
                     <div className={styles.PostBar}>
                         {is_owner ? (
                             <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
