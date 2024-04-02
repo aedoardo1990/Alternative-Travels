@@ -7,7 +7,7 @@
 .first {
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: #1B7AA6;
     padding: 1rem 0.5rem 0 0.5rem;
     margin-right: 3rem;
     border-radius: 2px; 
@@ -22,7 +22,7 @@
 .second {
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: #1B7AA6;
     padding: 1rem 0.5rem 0 0.5rem;
     margin-left: 3rem;
     border-radius: 2px; 

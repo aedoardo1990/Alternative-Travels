@@ -181,7 +181,7 @@ const Post = (props) => {
                     ) : (<Accordion>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link text-decoration-none" eventKey="0" onClick={handleShowDetails}>
+                                <Accordion.Toggle as={Button} variant="link text-decoration-none" style={{ color: 'black' }} eventKey="0" onClick={handleShowDetails}>
                                     Geolocation of this beauty
                                 </Accordion.Toggle>
                             </Card.Header>
