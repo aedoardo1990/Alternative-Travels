@@ -57,14 +57,14 @@ const Post = (props) => {
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} style={{ width: "100%", height: "100vh" }} zoom={13} />}
             </Col>
-            <Col md={12} className="pe-md-0">
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
                     {tags?.length > 0 && (
                         <ListGroup.Item className="flex-fill">
 
                             <div className="d-flex align-items-center flex-wrap">
                                 {tags?.map((tag, index) => (
-                                    <div className="fw-bold">Tags#
+                                    <div className="fw-bold">TAGS<i class="fa-solid fa-hashtag fa-sm"></i>
                                         <span className={styles.Tag} key={index}>
                                             {tag}
                                         </span>
@@ -181,8 +181,8 @@ const Post = (props) => {
                     ) : (<Accordion>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link text-decoration-none" style={{ color: 'black' }} eventKey="0" onClick={handleShowDetails}>
-                                    Geolocation of this beauty
+                                <Accordion.Toggle as={Button} variant="link text-decoration-none" className={styles.Toggle} eventKey="0" onClick={handleShowDetails}>
+                                    <i class="fa-solid fa-location-dot" ></i>Where is this beauty?
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
