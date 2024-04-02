@@ -63,7 +63,7 @@ function CommentCreateForm(props) {
         disabled={!content.trim()}
         type="submit"
       >
-        Pos<i class="fa-brands fa-telegram"></i>
+        Post<i class="fa-brands fa-telegram"></i>
       </button>
     </Form>
   );
