@@ -65,22 +65,22 @@ function SignInForm() {
     return (
         <Row className={styles.Row}>
             <Col className="my-auto p-0 p-md-2" md={6}>
-                <Container className={`${appStyles.Content} p-4 `}>
+                <Container className={`${appStyles.Content} p-4`}>
                     <h1 className={styles.Header}>Login</h1>
 
                     {/* Login Form */}
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="username">
+                        <Form.Group controlId="username" className={styles.FormGroup}>
                             <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control className={styles.Input} type="text" placeholder="Username" name="username" value={username} onChange={handleChange} />
                         </Form.Group>
 
-                        <Form.Group controlId="password">
+                        <Form.Group controlId="password" className={styles.FormGroup}>
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control className={styles.Input} type="password" placeholder="Password" name="password" value={password} onChange={handleChange} />
                         </Form.Group>
 
-                        <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
+                        <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} ${styles.FormGroup}`} type="submit">
                             Login
                         </Button>
 

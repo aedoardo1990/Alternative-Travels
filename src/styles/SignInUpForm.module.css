@@ -1,14 +1,20 @@
 .Row {
     height: calc(100vh - 81px);
   }
+
   .Input {
     background: #ffffff;
     border: 1px solid #f0f1f9;
     box-sizing: border-box;
-    border-radius: 2px;
-    color: #7177a1;
+    border: 1px solid;
+    border-radius: 10px;
+    color: #1B7AA6;
     text-align: center;
     padding: 10px;
+  }
+
+.FormGroup {
+  margin-bottom: 20px;
   }
   
   .Header {
