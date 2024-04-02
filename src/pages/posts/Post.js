@@ -166,7 +166,7 @@ const Post = (props) => {
                     </Link>
                 ) : (
                     <Link to={`/posts/${id}`}>
-                        <video src={video} width={290} height={400} controls />
+                        <video src={video} controls width="100%"/>
                     </Link>
                 )}
 
