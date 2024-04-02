@@ -54,24 +54,26 @@ const Post = (props) => {
 
     const postDetails = (
         <Row className="mt-2">
-            <Col md={7} className="pe-md-0">
-                <ListGroup className={`${appStyles.SmallText} mb-1 me-0`}>
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} style={{ width: "100%", height: "100vh" }} zoom={13} />}
+            </Col>
+            <Col md={12} className="pe-md-0">
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
                     {tags?.length > 0 && (
                         <ListGroup.Item className="flex-fill">
-                            <div className="fw-bold">Tags</div>
+
                             <div className="d-flex align-items-center flex-wrap">
                                 {tags?.map((tag, index) => (
-                                    <span className={styles.Tag} key={index}>
-                                        {tag}
-                                    </span>
+                                    <div className="fw-bold">Tags#
+                                        <span className={styles.Tag} key={index}>
+                                            {tag}
+                                        </span>
+                                    </div>
                                 ))}
                             </div>
                         </ListGroup.Item>
                     )}
                 </ListGroup>
-            </Col>
-            <Col md={5} className="pb-2 pt-1 pt-md-0">
-                {latitude && longitude && <PostDetailMap post={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} style={{ width: "100%", height: "100vh"}} zoom={13} />}
             </Col>
         </Row>
     );
