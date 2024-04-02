@@ -1,10 +1,19 @@
 .Owner {
-    font-weight: bold;
-    color: #1B7AA6;
-    margin-right: 8px;
-  }
+  font-weight: bold;
+  color: #1B7AA6;
+  margin-right: 8px;
+}
+
+.Date {
+  font-weight: lighter;
+  color: #c1c1c5;
+}
+
+.Card {
+  font-weight: lighter;
+  color: black;
+  background-color: #E7E7E7;
+  border: transparent;
+  border-radius: 20px;
   
-  .Date {
-    font-weight: lighter;
-    color: #c1c1c5;
-  }
+}

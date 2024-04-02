@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Media, Button, Modal } from 'react-bootstrap';
+import { Media, Button, Modal, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from '../../components/MoreDropdown';
@@ -52,25 +52,32 @@ const Comment = (props) => {
 
   return (
     <>
-      <hr />
-      <Media className='d-flex align-items-start justify-content-between'>
+      <br />
+      <Media className='d-flex align-items-start mt-4'>
         <Link to={`/profiles/${profile_id}`} className="fw-bold d-flex">
           <Avatar src={profile_image} />
-          <span className="mt-3">{owner}</span>
         </Link>
-        <Media.Body className="mt-3">
+        <Media.Body className="mx-2 mx-md-4 col-7 col-md-9">
           {showEditForm ? (
             <CommentEditForm
-            id={id}
-            profile_id={profile_id}
-            content={content}
-            profileImage={profile_image}
-            setComments={setComments}
-            setShowEditForm={setShowEditForm}
-          />
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
           ) : (
-            <p>{content}</p>
+            <Card className={styles.Card}>
+              <Card.Body>
+              <span className="fw-bold">{owner}</span>
+                <p>{content}</p>
+                </Card.Body>
+            </Card>
           )}
+          <div className="mt-2">
+            <span className={styles.Date}>{updated_at}</span>
+          </div>
         </Media.Body>
         {is_owner && !showEditForm && (
           <MoreDropdown
@@ -79,23 +86,20 @@ const Comment = (props) => {
           />
         )}
       </Media>
-      <div className="mt-2">
-      <span className={styles.Date}>{updated_at}</span>
-      </div>
       <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete Comment</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure to delete this comment?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleDelete}>
-                        Delete
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Comment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure to delete this comment?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
