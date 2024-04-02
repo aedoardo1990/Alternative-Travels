@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Media, Card } from 'react-bootstrap';
+import { Media, Button, Modal } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from '../../components/MoreDropdown';
@@ -23,6 +23,10 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleDelete = async () => {
     try {
@@ -72,10 +76,24 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleShow={handleShow}
           />
         )}
       </Media>
+      <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Comment</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure to delete this comment?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
     </>
   );
 };
