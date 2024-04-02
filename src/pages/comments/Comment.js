@@ -53,13 +53,12 @@ const Comment = (props) => {
   return (
     <>
       <hr />
-      <Media>
-        <Link to={`/profiles/${profile_id}`}>
+      <Media className='d-flex align-items-start justify-content-between'>
+        <Link to={`/profiles/${profile_id}`} className="fw-bold d-flex">
           <Avatar src={profile_image} />
+          <span className="mt-3">{owner}</span>
         </Link>
-        <Media.Body className="align-self-center ml-2">
-          <span className={styles.Owner}>{owner}</span>
-          <span className={styles.Date}>{updated_at}</span>
+        <Media.Body className="mt-3">
           {showEditForm ? (
             <CommentEditForm
             id={id}
@@ -80,6 +79,9 @@ const Comment = (props) => {
           />
         )}
       </Media>
+      <div className="mt-2">
+      <span className={styles.Date}>{updated_at}</span>
+      </div>
       <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete Comment</Modal.Title>
