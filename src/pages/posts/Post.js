@@ -139,9 +139,9 @@ const Post = (props) => {
                                 <Avatar src={profile_image} height={50} />
                                 {owner}
                             </Link>
-                            <span className="mx-5">{updated_at}</span>
                         </div>
                         <div className='d-flex align-items-center'>
+                            <span className="mx-2" style={{fontSize: 14, color: 'grey'}}>{updated_at}</span>
                             {/*It renders dropdown for edit/delete image/video post */}
                             {is_owner && postPage && (
                                 !image?.includes("default_post_g5kn5h") ?
