@@ -177,7 +177,7 @@ function PostEditVideoForm() {
                                         <video className={appStyles.Image} src={video} controls width="100%" rounded="True" />
                                     </figure>
                                     <div>
-                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="video-upload">
+                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Black} btn`} htmlFor="video-upload">
                                             Change video
                                         </Form.Label>
                                     </div>

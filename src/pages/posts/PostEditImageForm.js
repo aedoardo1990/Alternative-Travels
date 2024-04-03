@@ -178,7 +178,7 @@ function PostEditImageForm() {
                                         <Image className={appStyles.Image} src={image} rounded />
                                     </figure>
                                     <div>
-                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
+                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Black} btn`} htmlFor="image-upload">
                                             Change image
                                         </Form.Label>
                                     </div>
