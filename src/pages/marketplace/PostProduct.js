@@ -24,25 +24,25 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostProduct() {
     useRedirect('loggedOut');
 
-    const [postData, setPostData] = useState({
+    const [marketplaceData, setMarketplaceData] = useState({
         title: '',
         price: '',
         condition: '',
         details: '',
         image: '',
         address: '',
-        contact: '',
+        contact_number: '',
         email: '',
     });
 
-    const { title, price, condition, details, image, address, contact, email } = postData;
+    const { title, price, condition, details, image, address, contact_number, email } = marketplaceData;
     const imageInput = useRef(null);
     const history = useHistory();
     const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const handleChange = (event) => {
-        setPostData({
-            ...postData,
+        setMarketplaceData({
+            ...marketplaceData,
             [event.target.name]: event.target.value,
         });
     };
@@ -50,8 +50,8 @@ function PostProduct() {
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(image);
-            setPostData({
-                ...postData,
+            setMarketplaceData({
+                ...marketplaceData,
                 image: URL.createObjectURL(event.target.files[0]),
             });
         }
@@ -66,14 +66,14 @@ function PostProduct() {
         formData.append('condition', condition);
         formData.append('details', details);
         formData.append('address', address );
-        formData.append('contact', contact );
+        formData.append('contact_number', contact_number );
         formData.append('email', email);
         formData.append('image', imageInput.current.files[0]);
         try {
-            const { data } = await axiosReq.post('/posts/', formData);
+            const { data } = await axiosReq.post('/marketplace/', formData);
             successToast("Post successfully created!");
             setButtonDisabled(false);
-            history.push(`/posts/${data.id}`);
+            history.push(`/marketplace/${data.id}`);
         } catch (err) {
             if (err.response.data.title) {
                 // display if there are errors in title field
@@ -93,9 +93,9 @@ function PostProduct() {
             } else if (err.response.data.address) {
                 // display errors for address field
                 errorToast(err.response.data.address[0]);
-            } else if (err.response.data.contact) {
+            } else if (err.response.data.contact_number) {
                 // display errors for contact field
-                errorToast(err.response.data.contact[0]);
+                errorToast(err.response.data.contact_number[0]);
             } else if (err.response.data.email) {
                 // display errors for email field
                 errorToast(err.response.data.email[0]);
@@ -157,11 +157,11 @@ function PostProduct() {
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Contact</Form.Label>
+                <Form.Label>Contact number</Form.Label>
                 <Form.Control
-                    type="text"
-                    name="contact"
-                    value={contact}
+                    type="number"
+                    name="contact number"
+                    value={contact_number}
                     onChange={handleChange} />
             </Form.Group>
 
