@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Spinner from "react-bootstrap/Spinner";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -199,13 +200,13 @@ function PostEditImageForm() {
                                 />}
                                 
                                 <Button
-                                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                    className={`${btnStyles.Button} ${btnStyles.Black}`}
                                     onClick={() => history.goBack()}
                                 >
                                     Delete
                                 </Button>
-                                <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled}>
-                                    Create
+                                <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled}>
+                                {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Update"}
                                 </Button>
                             </Container>
                         </Col>
