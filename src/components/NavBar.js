@@ -46,6 +46,9 @@ const NavBar = () => {
       <NavLink to='/marketplace' className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-solid fa-store"></i> Market
       </NavLink>
+      <NavLink to='/marketplace/add' className={styles.NavLink} activeClassName={styles.Active}>
+      <i className="far fa-solid fa-truck-arrow-right"></i> Sell
+    </NavLink>
       <NavLink to='/' className={styles.NavLink} onClick={handleSignOut}>
         <i className="fas fa-solid fa-right-from-bracket"></i> Logout
       </NavLink>
