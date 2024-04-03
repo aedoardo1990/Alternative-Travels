@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
+import Spinner from "react-bootstrap/Spinner";
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";
 
@@ -186,13 +187,13 @@ function PostCreateFormImage() {
                         <TagField sendTags={setTags} currentTags={tags} className="d-md-none" />
 
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            className={`${btnStyles.Button} ${btnStyles.Black}`}
                             onClick={() => history.goBack()}
                         >
                             Delete
                         </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled} >
-                            Create
+                        <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled} >
+                            {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Create"}
                         </Button>
                     </Container>
                 </Col>
