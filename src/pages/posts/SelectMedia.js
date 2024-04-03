@@ -38,7 +38,7 @@ const SelectMedia = () => {
           </div>
           <div className={styles.Create}>
             <Link className={styles.Link} to="/posts/add/video" component={Button}>
-              Create post with a video <i class="fa-solid fa-film fa-xl"></i>
+              Create video post<i class="fa-solid fa-film fa-xl"></i>
             </Link>
           </div>
         </Container>
