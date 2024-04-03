@@ -61,6 +61,12 @@
     background-color: #1B7AA6 !important;
     color: #ffffff;
   }
+
+  .Black:hover {
+    background-color: #ffffff !important;
+    border-color: #1B7AA6;
+    color: #1B7AA6;
+  }
   
   .Black:hover,
   .BlackOutline {
