@@ -1,47 +1,47 @@
 .DropdownItem {
-    display: inline-block;
-    max-width: 50%;
-    padding: 0px;
-  }
-  
+  display: inline-block;
+  max-width: 50%;
+  padding: 0px;
+}
+
+.Absolute {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}
+
+@media screen and (min-width: 768px) {
   .Absolute {
     position: absolute;
-    right: 0;
+    right: 5%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .Absolute {
+    position: absolute;
+    right: 34%;
     z-index: 99;
   }
+}
 
-  @media screen and (min-width: 768px) {
-    .Absolute {
-      position: absolute;
-      right: 5%;
-    }
+@media screen and (min-width: 1024px) {
+  .Absolute {
+    position: absolute;
+    right: 35%;
   }
+}
 
-  @media screen and (min-width: 992px) {
-    .Absolute {
-      position: absolute;
-      right: 34%;
-      z-index: 99;
-    }
+@media screen and (min-width: 1440px) {
+  .Absolute {
+    position: absolute;
+    right: 35%;
   }
+}
 
-  @media screen and (min-width: 1024px) {
-    .Absolute {
-      position: absolute;
-      right: 35%;
-    }
+@media screen and (min-width: 2560px) {
+  .Absolute {
+    position: absolute;
+    right: 42%;
   }
-
-  @media screen and (min-width: 1440px) {
-    .Absolute {
-      position: absolute;
-      right: 35%;
-    }
-  }
-
-  @media screen and (min-width: 2560px) {
-    .Absolute {
-      position: absolute;
-      right: 42%;
-    }
-  }
+}
