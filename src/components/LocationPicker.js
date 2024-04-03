@@ -11,7 +11,7 @@ function LocationPicker({ onConfirm, onClose, showTooltip, setShowTooltip, curre
   const target = useRef(null);
   //rendering geolocation icon - credits: https://www.youtube.com/watch?v=jD6813wGdBA&t=165s
   const customIcon = new Icon ({
-    iconUrl: "https://res.cloudinary.com/duoyolryv/image/upload/v1711978223/marker-icon_qfvc0k.png",
+    iconUrl: "https://res.cloudinary.com/duoyolryv/image/upload/v1712154322/marker-icon_tioctv.png",
     iconSize: [38, 38] // icon size
   })
 
