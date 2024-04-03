@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
+import Spinner from "react-bootstrap/Spinner";
 
 import Upload from "../../assets/upload.png";
 
@@ -186,13 +187,13 @@ function PostCreateFormVideo() {
                         <TagField sendTags={setTags} currentTags={tags} className="d-md-none" />
 
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            className={`${btnStyles.Button} ${btnStyles.Black}`}
                             onClick={() => history.goBack()}
                         >
                             Delete
                         </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit" disabled={buttonDisabled}>
-                            Create
+                        <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled}>
+                        {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Create"}
                         </Button>
                     </Container>
                 </Col>
