@@ -3,6 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import styles from "../../styles/SelectMedia.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -17,22 +18,27 @@ const SelectMedia = () => {
             <Image
               className={styles.ImageIcon}
               src={
-                "https://res.cloudinary.com/duoyolryv/image/upload/v1709726107/default_post_g5kn5h.jpg"
+                "https://res.cloudinary.com/duoyolryv/image/upload/v1712135751/photo_re6dr3.webp"
               }
             />
-            <Link className={styles.Link} to="/posts/add/image">
-              Create a post with an image
+
+          </div>
+          <div className={styles.Create}>
+            <Link className={styles.Link} to="/posts/add/image" component={Button}>
+              Create image post <i class="fa-solid fa-camera-retro fa-xl"></i>
             </Link>
           </div>
           <div className={styles.second}>
             <Image
               className={styles.ImageIcon}
               src={
-                "https://res.cloudinary.com/duoyolryv/image/upload/v1711705321/default_video_waimeh.png"
+                "https://res.cloudinary.com/duoyolryv/image/upload/v1712135751/video_iwnx3h.gif"
               }
             />
-            <Link className={styles.Link} to="/posts/add/video">
-              Create a post with a video
+          </div>
+          <div className={styles.Create}>
+            <Link className={styles.Link} to="/posts/add/video" component={Button}>
+              Create post with a video <i class="fa-solid fa-film fa-xl"></i>
             </Link>
           </div>
         </Container>
