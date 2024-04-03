@@ -43,8 +43,8 @@ const NavBar = () => {
       <NavLink to='/map' className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-earth-europe"></i> Map
       </NavLink>
-      <NavLink to='/notifications' className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-solid fa-bell"></i> News
+      <NavLink to='/marketplace' className={styles.NavLink} activeClassName={styles.Active}>
+        <i className="fas fa-solid fa-store"></i> Market
       </NavLink>
       <NavLink to='/' className={styles.NavLink} onClick={handleSignOut}>
         <i className="fas fa-solid fa-right-from-bracket"></i> Logout
