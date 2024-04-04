@@ -5,10 +5,15 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Marketplace from "./Marketplace";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 function MarketplacePage() {
   const { id } = useParams();
   const [marketplace, setMarketplace] = useState({ results: [] });
+
+  const currentUser = useCurrentUser();
+  const profile_image = currentUser?.profile_image;
 
   useEffect(() => {
     const handleMount = async () => {
