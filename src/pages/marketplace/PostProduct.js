@@ -27,6 +27,7 @@ function PostProduct() {
     const [marketplaceData, setMarketplaceData] = useState({
         title: '',
         price: '',
+        status: '',
         condition: '',
         details: '',
         image: '',
@@ -35,7 +36,7 @@ function PostProduct() {
         email: '',
     });
 
-    const { title, price, condition, details, image, address, contact_number, email } = marketplaceData;
+    const { title, price, condition, status, details, image, address, contact_number, email } = marketplaceData;
     const imageInput = useRef(null);
     const history = useHistory();
     const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -64,6 +65,7 @@ function PostProduct() {
         formData.append('title', title);
         formData.append('price', price);
         formData.append('condition', condition);
+        formData.append('status', status);
         formData.append('details', details);
         formData.append('address', address );
         formData.append('contact_number', contact_number );
@@ -71,7 +73,7 @@ function PostProduct() {
         formData.append('image', imageInput.current.files[0]);
         try {
             const { data } = await axiosReq.post('/marketplace/', formData);
-            successToast("Post successfully created!");
+            successToast("Post created successfully!");
             setButtonDisabled(false);
             history.push(`/marketplace/${data.id}`);
         } catch (err) {
@@ -87,7 +89,10 @@ function PostProduct() {
             } else if (err.response.data.condition) {
                 // display errors for condition field
                 errorToast(err.response.data.condition[0]);
-            } else if (err.response.data.details) {
+            } else if (err.response.data.status) {
+                // display errors for status field
+                errorToast(err.response.data.status[0]);
+            }else if (err.response.data.details) {
                 // display errors for details field
                 errorToast(err.response.data.details[0]);
             } else if (err.response.data.address) {
@@ -122,7 +127,7 @@ function PostProduct() {
             <Form.Group>
                 <Form.Label>Price</Form.Label>
                 <Form.Control
-                    type="float"
+                    type="number"
                     name="price"
                     value={price}
                     onChange={handleChange} />
@@ -138,11 +143,20 @@ function PostProduct() {
             </Form.Group>
 
             <Form.Group>
+                <Form.Label>Status</Form.Label>
+                <Form.Control
+                    type="number"
+                    name="status"
+                    value={status}
+                    onChange={handleChange}  />
+            </Form.Group>
+
+            <Form.Group>
                 <Form.Label>Details</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={6}
-                    name="content"
+                    name="details"
                     value={details}
                     onChange={handleChange} />
             </Form.Group>
@@ -160,7 +174,7 @@ function PostProduct() {
                 <Form.Label>Contact number</Form.Label>
                 <Form.Control
                     type="number"
-                    name="contact number"
+                    name="contact_number"
                     value={contact_number}
                     onChange={handleChange} />
             </Form.Group>

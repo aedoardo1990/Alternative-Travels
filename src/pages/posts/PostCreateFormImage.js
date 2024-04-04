@@ -91,7 +91,7 @@ function PostCreateFormImage() {
         }
         try {
             const { data } = await axiosReq.post('/posts/', formData);
-            successToast("Post successfully created!");
+            successToast("Post created successfully!");
             setButtonDisabled(false);
             history.push(`/posts/${data.id}`);
         } catch (err) {
