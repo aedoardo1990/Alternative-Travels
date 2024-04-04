@@ -12,7 +12,6 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
 import { MoreDropdown } from '../../components/MoreDropdown';
-//import PostImage from "../../components/PostImage";
 import PostDetailMap from "../../components/PostDetailMap";
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";

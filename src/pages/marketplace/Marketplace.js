@@ -25,6 +25,7 @@ const Marketplace = (props) => {
         price,
         image,
         condition,
+        status,
         details,
         address,
         contact_number,
@@ -46,8 +47,28 @@ const Marketplace = (props) => {
         setRerenderMap(rerenderMap ? false : true);
     };
 
-    const handleEditImage = () => {
-        history.push(`/marketplace/${id}/edit-image`);
+    const productDetails = (
+        <Row className="mt-2">
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {status}
+            </Col>
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {details}
+            </Col>
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {address}
+            </Col>
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {contact_number}
+            </Col>
+            <Col md={12} className="pb-2 pt-1 pt-md-0">
+                {email}
+            </Col>
+        </Row>
+    );
+
+    const handleEditProduct= () => {
+        history.push(`/marketplace/${id}/edit-product`);
     };
 
     const handleDelete = async () => {
@@ -76,8 +97,8 @@ const Marketplace = (props) => {
                         </div>
                         <div className='d-flex align-items-center'>
                             <span className="mx-2" style={{ fontSize: 14, color: 'grey' }}>{updated_at}</span>
-                            {is_owner && postPage && (<MoreDropdown
-                                        handleEdit={handleEditImage}
+                            {is_owner && marketplacePage && (<MoreDropdown
+                                        handleEdit={handleEditProduct}
                                         handleShow={handleShow}
                                     />
                             )}
@@ -94,16 +115,16 @@ const Marketplace = (props) => {
                     {price && <Card.Text>{price}</Card.Text>}
                     {condition && <Card.Text>{condition}</Card.Text>}
                     {marketplacePage ? (
-                        details
+                        productDetails
                     ) : (<Accordion>
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle as={Button} variant="link text-decoration-none" className={styles.Toggle} eventKey="0" onClick={handleShowDetails}>
-                                    <i class="fa-solid fa-location-dot" ></i>Details and contact
+                                    <i class="fa-solid fa-location-dot" ></i>Check details and contact
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <Card.Body><p>{details}</p><p>{address}</p><p>{contact_number}</p><p>{email}</p></Card.Body>
+                                <Card.Body>{productDetails}</Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
