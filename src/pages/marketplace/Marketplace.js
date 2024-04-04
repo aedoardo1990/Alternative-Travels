@@ -21,9 +21,9 @@ const Marketplace = (props) => {
         owner,
         profile_id,
         profile_image,
-        comments_count,
-        likes_count,
-        like_id,
+        opinions_count,
+        loves_count,
+        love_id,
         title,
         price,
         image,
@@ -104,14 +104,14 @@ const Marketplace = (props) => {
         }
     };
 
-    const handleLike = async () => {
+    const handleLove = async () => {
         try {
-            const { data } = await axiosRes.post("/likes/", { marketplace: id });
+            const { data } = await axiosRes.post("/loves/", { marketplace: id });
             setMarketplaces((prevMarketplaces) => ({
                 ...prevMarketplaces,
                 results: prevMarketplaces.results.map((marketplace) => {
                     return marketplace.id === id
-                        ? { ...marketplace, likes_count: marketplace.likes_count + 1, like_id: data.id }
+                        ? { ...marketplace, loves_count: marketplace.loves_count + 1, love_id: data.id }
                         : marketplace;
                 }),
             }));
@@ -120,14 +120,14 @@ const Marketplace = (props) => {
         }
     };
 
-    const handleUnlike = async () => {
+    const handleUnlove = async () => {
         try {
-            await axiosRes.delete(`/likes/${like_id}/`);
+            await axiosRes.delete(`/loves/${love}/`);
             setMarketplaces((prevMarketplaces) => ({
                 ...prevMarketplaces,
                 results: prevMarketplaces.results.map((marketplace) => {
                     return marketplace.id === id
-                        ? { ...marketplace, likes_count: marketplace.likes_count - 1, like_id: null }
+                        ? { ...marketplace, loves_count: marketplace.loves_count - 1, love_id: null }
                         : marketplace;
                 }),
             }));
@@ -189,12 +189,12 @@ const Marketplace = (props) => {
                             <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
                                 <i className='far fa-thumbs-up' />
                             </OverlayTrigger>
-                        ) : like_id ? (
-                            <span onClick={handleUnlike}>
+                        ) : love_id ? (
+                            <span onClick={handleUnlove}>
                                 <i className={`fas fa-thumbs-up ${styles.ThumbsUp}`} />
                             </span>
                         ) : currentUser ? (
-                            <span onClick={handleLike}>
+                            <span onClick={handleLove}>
                                 <i className={`far fa-thumbs-up ${styles.ThumbsUpOutline}`} />
                             </span>
                         ) : (
@@ -202,11 +202,11 @@ const Marketplace = (props) => {
                                 <i className='far fa-thumbs-up' />
                             </OverlayTrigger>
                         )}
-                        {likes_count}
-                        <Link to={`/posts/${id}`}>
+                        {loves_count}
+                        <Link to={`/marketplace/${id}`}>
                             <i className='far fa-comments' />
                         </Link>
-                        {comments_count}
+                        {opinions_count}
                     </div>
                 </Card.Body>
             </Card>
