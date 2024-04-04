@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,20 +6,23 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Asset from "../../components/Asset";
 import Spinner from "react-bootstrap/Spinner";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
+
+import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
-import Asset from "../../components/Asset";
-import 'react-toastify/dist/ReactToastify.css';
-import { successToast, errorToast } from "../../components/Toasts";
-
-function EditProduct() {
+function MarketplaceCreateProduct() {
+    useRedirect('loggedOut');
 
     const [marketplaceData, setMarketplaceData] = useState({
         title: '',
@@ -34,40 +37,9 @@ function EditProduct() {
     });
 
     const { title, price, condition, status, details, image, address, contact_number, email } = marketplaceData;
-
     const imageInput = useRef(null);
     const history = useHistory();
-    const { id } = useParams();
-    const [hasLoaded, setHasLoaded] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
-
-    useEffect(() => {
-        const handleMount = async () => {
-            if (!hasLoaded) {
-                try {
-                    const { data } = await axiosReq.get(`/marketplace/${id}`);
-                    setHasLoaded(true);
-                    const { is_owner, title, price, condition, status, details, image, address, contact_number, email } = data;
-                    is_owner ? setMarketplaceData({
-                        title: title,
-                        price: price,
-                        condition: condition,
-                        status: status,
-                        details: details,
-                        image: image,
-                        address: address,
-                        contact_number: contact_number,
-                        email: email
-                    })
-                        : history.push("/");
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-        };
-
-        handleMount();
-    }, [history, id, marketplaceData, hasLoaded]);
 
     const handleChange = (event) => {
         setMarketplaceData({
@@ -99,14 +71,11 @@ function EditProduct() {
         formData.append('contact_number', contact_number );
         formData.append('email', email);
         formData.append('image', imageInput.current.files[0]);
-        if (imageInput?.current?.files[0]) {
-            formData.append('image', imageInput.current.files[0]);
-        }
         try {
-            await axiosReq.put(`/marketplace/${id}`, formData);
-            successToast("Item edited successfully!");
+            const { data } = await axiosReq.post('/marketplace/', formData);
+            successToast("New item created successfully!");
             setButtonDisabled(false);
-            history.push(`/marketplace/${id}`);
+            history.push(`/marketplace/${data.id}`);
         } catch (err) {
             if (err.response.data.title) {
                 // display if there are errors in title field
@@ -144,7 +113,7 @@ function EditProduct() {
 
     const textFields = (
         <div className="text-center">
-            {/* Create Post form */}
+            {/* Create Post form  for Marketplace*/}
 
             <Form.Group>
                 <Form.Label>Title</Form.Label>
@@ -218,55 +187,59 @@ function EditProduct() {
                     value={email}
                     onChange={handleChange} />
             </Form.Group>
-            
         </div>
     );
 
     return (
-        <>
-            {hasLoaded ? (
-                <Form onSubmit={handleSubmit}>
-                    <Row>
-                        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                            <Container
-                                className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                            >
-                                <Form.Group className="text-center">
+        <Form onSubmit={handleSubmit}>
+            <Row>
+                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                    <Container
+                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                    >
+                        <Form.Group className="text-center">
+                            {image ? (
+                                <>
                                     <figure>
                                         <Image className={appStyles.Image} src={image} rounded />
                                     </figure>
                                     <div>
-                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Black} btn`} htmlFor="image-upload">
+                                        <Form.Label className={`${btnStyles.Button} ${btnStyles.Blue} btn`} htmlFor="image-upload">
                                             Change image
                                         </Form.Label>
                                     </div>
-                                    <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
-                                </Form.Group>
-                                
-                            </Container>
-                        </Col>
-                        <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
-                            <Container className={appStyles.Content}>
-                                {textFields}
-                                
-                                <Button
-                                    className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                    onClick={() => history.goBack()}
+                                </>
+                            ) : (
+                                <Form.Label
+                                    className="d-flex justify-content-center"
+                                    htmlFor="image-upload"
                                 >
-                                    Delete
-                                </Button>
-                                <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled}>
-                                {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Update"}
-                                </Button>
-                            </Container>
-                        </Col>
-                    </Row>
-                </Form >
-            ) : (
-                <Asset spinner />
-            )}
-        </>
+                                    <Asset src={Upload} message="Upload an image of the product" />
+                                </Form.Label>
+                            )}
+                            <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
+                        </Form.Group>
+                    </Container>
+                </Col>
+
+                <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
+                    <Container className={appStyles.Content}>
+                        {textFields}
+
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Black}`}
+                            onClick={() => history.goBack()}
+                        >
+                            Delete
+                        </Button>
+                        <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled} >
+                            {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Create"}
+                        </Button>
+                    </Container>
+                </Col>
+            </Row>
+        </Form >
     );
 }
 
-export default EditProduct;
+export default MarketplaceCreateProduct;
