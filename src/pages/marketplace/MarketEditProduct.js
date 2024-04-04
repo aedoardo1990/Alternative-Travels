@@ -19,7 +19,7 @@ import Asset from "../../components/Asset";
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";
 
-function MarketplaceEditProduct() {
+function MarketEditProduct() {
 
     const [marketplaceData, setMarketplaceData] = useState({
         title: '',
@@ -269,4 +269,4 @@ function MarketplaceEditProduct() {
     );
 }
 
-export default MarketplaceEditProduct;
+export default MarketEditProduct;

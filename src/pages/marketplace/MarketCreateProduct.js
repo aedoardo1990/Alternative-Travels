@@ -21,7 +21,7 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function MarketplaceCreateProduct() {
+function MarketCreateProduct() {
     useRedirect('loggedOut');
 
     const [marketplaceData, setMarketplaceData] = useState({
@@ -242,4 +242,4 @@ function MarketplaceCreateProduct() {
     );
 }
 
-export default MarketplaceCreateProduct;
+export default MarketCreateProduct;

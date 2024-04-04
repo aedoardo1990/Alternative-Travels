@@ -20,8 +20,8 @@ import ProfileEditForm from './pages/profiles/ProfileEditForm';
 import Map from "./pages/map/Map";
 import MarketplacePage from "./pages/marketplace/MarketplacePage";
 import MarketplacesPage from './pages/marketplace/MarketplacesPage';
-import PostProduct from "./pages/marketplace/PostProduct";
-import EditProduct from './pages/marketplace/EditProduct';
+import MarketCreateProduct from "./pages/marketplace/MarketCreateProduct";
+import MarketEditProduct from './pages/marketplace/MarketEditProduct';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -67,9 +67,9 @@ function App() {
             <MarketplacesPage message="No results found. Adjust the search keyword." />
           )}
           />
-          <Route exact path="/marketplace/add/" render={() => <PostProduct />} />
+          <Route exact path="/marketplace/add/" render={() => <MarketCreateProduct />} />
           <Route exact path="/marketplace/:id" render={() => <MarketplacePage />} />
-          <Route exact path="/marketplace/:id/edit-product" render={() => <EditProduct />} />
+          <Route exact path="/marketplace/:id/edit-product" render={() => <MarketEditProduct />} />
           <Route render={() => <h1>Page not found <i class="fa-solid fa-circle-radiation fa-beat-fade"></i></h1>} />
         </Switch>
       </Container>
