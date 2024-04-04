@@ -122,7 +122,7 @@ const Marketplace = (props) => {
 
     const handleUnlove = async () => {
         try {
-            await axiosRes.delete(`/loves/${love}/`);
+            await axiosRes.delete(`/loves/${love_id}/`);
             setMarketplaces((prevMarketplaces) => ({
                 ...prevMarketplaces,
                 results: prevMarketplaces.results.map((marketplace) => {
@@ -175,7 +175,7 @@ const Marketplace = (props) => {
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle as={Button} variant="link text-decoration-none" className={styles.Toggle} eventKey="0" onClick={handleShowDetails}>
-                                    <i class="fa-solid fa-location-dot" ></i>Check details and contact
+                                <i class="fa-solid fa-address-card"></i>Check details and contact
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">

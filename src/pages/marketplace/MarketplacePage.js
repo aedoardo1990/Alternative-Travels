@@ -31,7 +31,7 @@ function MarketplacePage() {
 
         ]);
         setMarketplace({ results: [marketplace] });
-        setOpinions(opinion);
+        setOpinions(opinions);
       } catch (err) {
         console.log(err);
       }
