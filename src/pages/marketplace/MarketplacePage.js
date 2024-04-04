@@ -37,7 +37,7 @@ function MarketplacePage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
       <PopularProfiles mobile />
-        <Marketplace {...post.results[0]} setMarketplaces={setMarketplace} marketplacePage />
+        <Marketplace {...marketplace.results[0]} setMarketplaces={setMarketplace} marketplacePage />
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
       <PopularProfiles />
