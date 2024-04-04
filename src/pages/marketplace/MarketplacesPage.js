@@ -10,6 +10,8 @@ import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
+import { useLocation } from "react-router";
+
 import { axiosReq } from "../../api/axiosDefaults";
 
 import NoResults from "../../assets/no-results.png";
@@ -20,6 +22,7 @@ import PopularProfiles from "../profiles/PopularProfiles";
 function MarketplacesPage({ message, filter = "" }) {
     const [marketplaces, setMarketplaces] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
+    const { pathname } = useLocation();
     const [query, setQuery] = useState("");
 
     useEffect(() => {

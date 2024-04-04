@@ -7,7 +7,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Card, Media, OverlayTrigger, Tooltip, Modal, Container, Button } from "react-bootstrap";
+import { Card, Media, Modal, Container, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
@@ -44,30 +44,49 @@ const Marketplace = (props) => {
 
 
     const handleShowDetails = () => {
-        setRerenderMap(rerenderMap ? false : true);
     };
 
     const productDetails = (
         <Row className="mt-2">
             <Col md={12} className="pb-2 pt-1 pt-md-0">
-                {status}
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        {status}
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
-                {details}
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        {details}
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
-                {address}
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        {address}
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
-                {contact_number}
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        {contact_number}
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
-                {email}
+                <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        {email}
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
         </Row>
     );
 
-    const handleEditProduct= () => {
+    const handleEditProduct = () => {
         history.push(`/marketplace/${id}/edit-product`);
     };
 
@@ -98,17 +117,17 @@ const Marketplace = (props) => {
                         <div className='d-flex align-items-center'>
                             <span className="mx-2" style={{ fontSize: 14, color: 'grey' }}>{updated_at}</span>
                             {is_owner && marketplacePage && (<MoreDropdown
-                                        handleEdit={handleEditProduct}
-                                        handleShow={handleShow}
-                                    />
+                                handleEdit={handleEditProduct}
+                                handleShow={handleShow}
+                            />
                             )}
                         </div>
                     </Media>
                 </Card.Body>
 
-                    <Link to={`/marketplace/${id}`}>
-                        <Card.Img src={image} alt={title} />
-                    </Link>
+                <Link to={`/marketplace/${id}`}>
+                    <Card.Img src={image} alt={title} />
+                </Link>
 
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
