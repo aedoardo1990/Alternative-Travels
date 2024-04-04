@@ -6,8 +6,8 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Marketplace from "./Marketplace";
-import Comment from "../comments/Comment";
-import CommentCreateForm from "../comments/CommentCreateForm";
+import Opinion from "../opinions/Opinion";
+import OpinionCreateForm from "../opinions/OpinionCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
@@ -20,18 +20,18 @@ function MarketplacePage() {
 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
-  const [comments, setComments] = useState({ results: [] });
+  const [opinions, setOpinions] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: marketplace }, { data: comments }] = await Promise.all([
+        const [{ data: marketplace }, { data: opinions }] = await Promise.all([
           axiosReq.get(`/marketplace/${id}`),
-          axiosReq.get(`/comments/?marketplace=${id}`),
+          axiosReq.get(`/opinions/?marketplace=${id}`),
 
         ]);
         setMarketplace({ results: [marketplace] });
-        setComments(comments);
+        setOpinions(opinion);
       } catch (err) {
         console.log(err);
       }
@@ -46,32 +46,32 @@ function MarketplacePage() {
         <Marketplace {...marketplace.results[0]} setMarketplaces={setMarketplace} marketplacePage />
         <Container className={appStyles.Content}>
           {currentUser ? (
-            <CommentCreateForm
+            <OpinionCreateForm
               profile_id={currentUser.profile_id}
               profileImage={profile_image}
               marketplace={id}
               setMarketplace={setMarketplace}
-              setComments={setComments}
+              setOpinions={setOpinions}
             />
-          ) : comments.results.length ? (
+          ) : opinions.results.length ? (
             "Comments"
           ) : null}
-          {comments.results.length ? (
+          {opinions.results.length ? (
             <InfiniteScroll
               children={
-                comments.results.map((comment) => (
-                  <Comment
-                    key={comment.id}
-                    {...comment}
+                opinions.results.map((opinion) => (
+                  <Opinion
+                    key={opinion.id}
+                    {...opinion}
                     setMarketplace={setMarketplace}
-                    setComments={setComments}
+                    setOpinions={setOpinions}
                   />
                 ))
               }
-              dataLength={comments.results.length}
+              dataLength={opinions.results.length}
               loader={<Asset spinner />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
+              hasMore={!!opinions.next}
+              next={() => fetchMoreData(opinions, setOpinions)}
             />
           ) : currentUser ? (
             <span>No comments yet, what's on your mind?</span>
