@@ -3,7 +3,7 @@ import { Media, Button, Modal, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from '../../components/MoreDropdown';
-import CommentEditForm from "./CommentEditForm";
+import OpinionEditForm from "./OpinionEditForm";
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from '../../api/axiosDefaults';
@@ -30,19 +30,19 @@ const Opinion = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/comments/${id}/`);
-      setPost((prevPost) => ({
+      await axiosRes.delete(`/opinions/${id}/`);
+      setMarketplace((prevMarketplace) => ({
         results: [
           {
-            ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count - 1,
+            ...prevMarketplace.results[0],
+            opinions_count: prevMarketplace.results[0].opinions_count - 1,
           },
         ],
       }));
 
-      setComments((prevComments) => ({
-        ...prevComments,
-        results: prevComments.results.filter((comment) => comment.id !== id),
+      setOpinions((prevOpinions) => ({
+        ...prevOpinions,
+        results: prevOpinions.results.filter((opinion) => opinion.id !== id),
       }));
     } catch (err) {
       console.log(err);
@@ -59,12 +59,12 @@ const Opinion = (props) => {
         </Link>
         <Media.Body className="mx-2 mx-md-4 col-7 col-md-9">
           {showEditForm ? (
-            <CommentEditForm
+            <OpinionEditForm
               id={id}
               profile_id={profile_id}
               content={content}
               profileImage={profile_image}
-              setComments={setComments}
+              setOpinions={setOpinions}
               setShowEditForm={setShowEditForm}
             />
           ) : (
