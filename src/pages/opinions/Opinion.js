@@ -8,7 +8,7 @@ import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from '../../api/axiosDefaults';
 
-const Comment = (props) => {
+const Opinion = (props) => {
   const {
     profile_id,
     profile_image,
@@ -16,8 +16,8 @@ const Comment = (props) => {
     updated_at,
     content,
     id,
-    setPost,
-    setComments,
+    setMarketplace,
+    setOpinions,
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
@@ -104,4 +104,4 @@ const Comment = (props) => {
   );
 };
 
-export default Comment;
+export default Opinion;
