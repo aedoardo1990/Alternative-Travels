@@ -80,7 +80,7 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <NavLink exact to='/' activeClassName={styles.Active}>
-              <i className="fas fa-dharmachakra"></i> Home
+              <i className="fas fa-solid fa-house"></i> Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
