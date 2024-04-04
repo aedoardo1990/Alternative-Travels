@@ -7,7 +7,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Card, Media, Modal, Container, Button } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip, Modal, Container, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from '../../api/axiosDefaults';
@@ -21,6 +21,9 @@ const Marketplace = (props) => {
         owner,
         profile_id,
         profile_image,
+        comments_count,
+        likes_count,
+        like_id,
         title,
         price,
         image,
@@ -32,6 +35,7 @@ const Marketplace = (props) => {
         email,
         updated_at,
         marketplacePage,
+        setMarketplaces,
     } = props;
 
     const currentUser = useCurrentUser();
@@ -100,6 +104,38 @@ const Marketplace = (props) => {
         }
     };
 
+    const handleLike = async () => {
+        try {
+            const { data } = await axiosRes.post("/likes/", { marketplace: id });
+            setMarketplaces((prevMarketplaces) => ({
+                ...prevMarketplaces,
+                results: prevMarketplaces.results.map((marketplace) => {
+                    return marketplace.id === id
+                        ? { ...marketplace, likes_count: marketplace.likes_count + 1, like_id: data.id }
+                        : marketplace;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleUnlike = async () => {
+        try {
+            await axiosRes.delete(`/likes/${like_id}/`);
+            setMarketplaces((prevMarketplaces) => ({
+                ...prevMarketplaces,
+                results: prevMarketplaces.results.map((marketplace) => {
+                    return marketplace.id === id
+                        ? { ...marketplace, likes_count: marketplace.likes_count - 1, like_id: null }
+                        : marketplace;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <Container>
             <Card className={styles.Post}>
@@ -148,6 +184,30 @@ const Marketplace = (props) => {
                         </Card>
                     </Accordion>
                     )}
+                    <div className={styles.PostBar}>
+                        {is_owner ? (
+                            <OverlayTrigger placement='top' overlay={<Tooltip>You can't like your own post</Tooltip>}>
+                                <i className='far fa-thumbs-up' />
+                            </OverlayTrigger>
+                        ) : like_id ? (
+                            <span onClick={handleUnlike}>
+                                <i className={`fas fa-thumbs-up ${styles.ThumbsUp}`} />
+                            </span>
+                        ) : currentUser ? (
+                            <span onClick={handleLike}>
+                                <i className={`far fa-thumbs-up ${styles.ThumbsUpOutline}`} />
+                            </span>
+                        ) : (
+                            <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like posts</Tooltip>}>
+                                <i className='far fa-thumbs-up' />
+                            </OverlayTrigger>
+                        )}
+                        {likes_count}
+                        <Link to={`/posts/${id}`}>
+                            <i className='far fa-comments' />
+                        </Link>
+                        {comments_count}
+                    </div>
                 </Card.Body>
             </Card>
             <Modal show={show} onHide={handleClose}>
