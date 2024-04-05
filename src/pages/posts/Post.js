@@ -59,7 +59,7 @@ const Post = (props) => {
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
                     {tags?.length > 0 && (
-                        <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
+                        <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
                             <div className="fw-bold">TAGS<i class="fa-solid fa-hashtag fa-sm"></i></div>
                             <div className>
                                 {tags?.map((tag, index) => (
