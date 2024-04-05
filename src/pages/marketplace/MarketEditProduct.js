@@ -95,10 +95,9 @@ function MarketEditProduct() {
         formData.append('condition', condition);
         formData.append('status', status);
         formData.append('details', details);
-        formData.append('address', address );
-        formData.append('contact_number', contact_number );
+        formData.append('address', address);
+        formData.append('contact_number', contact_number);
         formData.append('email', email);
-        formData.append('image', imageInput.current.files[0]);
         if (imageInput?.current?.files[0]) {
             formData.append('image', imageInput.current.files[0]);
         }
@@ -123,7 +122,7 @@ function MarketEditProduct() {
             } else if (err.response.data.status) {
                 // display errors for status field
                 errorToast(err.response.data.status[0]);
-            }else if (err.response.data.details) {
+            } else if (err.response.data.details) {
                 // display errors for details field
                 errorToast(err.response.data.details[0]);
             } else if (err.response.data.address) {
@@ -167,19 +166,28 @@ function MarketEditProduct() {
             <Form.Group>
                 <Form.Label>Condition</Form.Label>
                 <Form.Control
-                    type="text"
+                    as="select"
                     name="condition"
                     value={condition}
-                    onChange={handleChange} />
+                    onChange={handleChange} >
+                    <option>- Select an option -</option>
+                    <option>New</option>
+                    <option>Used like new</option>
+                    <option>Used</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group>
                 <Form.Label>Status</Form.Label>
                 <Form.Control
-                    type="number"
+                    as="select"
                     name="status"
                     value={status}
-                    onChange={handleChange}  />
+                    onChange={handleChange} >
+                    <option>- Select an option -</option>
+                    <option>Available</option>
+                    <option>Sold</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group>
@@ -218,7 +226,7 @@ function MarketEditProduct() {
                     value={email}
                     onChange={handleChange} />
             </Form.Group>
-            
+
         </div>
     );
 
@@ -242,13 +250,13 @@ function MarketEditProduct() {
                                     </div>
                                     <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
                                 </Form.Group>
-                                
+
                             </Container>
                         </Col>
                         <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                             <Container className={appStyles.Content}>
                                 {textFields}
-                                
+
                                 <Button
                                     className={`${btnStyles.Button} ${btnStyles.Black}`}
                                     onClick={() => history.goBack()}
@@ -256,7 +264,7 @@ function MarketEditProduct() {
                                     Delete
                                 </Button>
                                 <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled}>
-                                {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Update"}
+                                    {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Update"}
                                 </Button>
                             </Container>
                         </Col>

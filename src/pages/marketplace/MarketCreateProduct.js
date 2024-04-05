@@ -67,8 +67,8 @@ function MarketCreateProduct() {
         formData.append('condition', condition);
         formData.append('status', status);
         formData.append('details', details);
-        formData.append('address', address );
-        formData.append('contact_number', contact_number );
+        formData.append('address', address);
+        formData.append('contact_number', contact_number);
         formData.append('email', email);
         formData.append('image', imageInput.current.files[0]);
         try {
@@ -92,7 +92,7 @@ function MarketCreateProduct() {
             } else if (err.response.data.status) {
                 // display errors for status field
                 errorToast(err.response.data.status[0]);
-            }else if (err.response.data.details) {
+            } else if (err.response.data.details) {
                 // display errors for details field
                 errorToast(err.response.data.details[0]);
             } else if (err.response.data.address) {
@@ -136,19 +136,28 @@ function MarketCreateProduct() {
             <Form.Group>
                 <Form.Label>Condition</Form.Label>
                 <Form.Control
-                    type="text"
+                    as="select"
                     name="condition"
                     value={condition}
-                    onChange={handleChange} />
+                    onChange={handleChange} >
+                    <option>- Select an option -</option>
+                    <option>New</option>
+                    <option>Used like new</option>
+                    <option>Used</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group>
                 <Form.Label>Status</Form.Label>
                 <Form.Control
-                    type="number"
+                    as="select"
                     name="status"
                     value={status}
-                    onChange={handleChange}  />
+                    onChange={handleChange} >
+                    <option>- Select an option -</option>
+                    <option>Available</option>
+                    <option>Sold</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group>
