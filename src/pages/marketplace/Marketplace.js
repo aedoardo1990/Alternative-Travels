@@ -46,7 +46,6 @@ const Marketplace = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     const handleShowDetails = () => {
     };
 
@@ -168,7 +167,8 @@ const Marketplace = (props) => {
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
                     {price && <Card.Text>{price}</Card.Text>}
-                    {condition && <Card.Text>{condition}</Card.Text>}
+                    {condition && <Card.Text style={{color: condition === 'New' ? '#31CE40':'#E7BB1A', fontWeight: 'bold'}}
+>Condition: {condition}</Card.Text>}
                     {marketplacePage ? (
                         productDetails
                     ) : (<Accordion>
