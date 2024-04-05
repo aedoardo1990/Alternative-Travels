@@ -98,7 +98,7 @@ const Marketplace = (props) => {
         try {
             await axiosRes.delete(`/marketplace/${id}`);
             history.goBack('/');
-            successToast("Post deleted successfully!");
+            successToast("Item deleted successfully!");
         } catch (err) {
             errorToast("Oops, something went wrong!");
         }
@@ -136,6 +136,11 @@ const Marketplace = (props) => {
         }
     };
 
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'EUR',
+    });
+
     return (
         <Container>
             <Card className={styles.Post}>
@@ -167,7 +172,7 @@ const Marketplace = (props) => {
 
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
-                    {price && <Card.Text>{price}</Card.Text>}
+                    {price && <Card.Text>{formatter.format(price)}</Card.Text>}
                     {condition && <Card.Text style={{ color: condition === 'New' ? '#31CE40' : '#E7BB1A', fontWeight: 'bold' }}
                     >Condition: {condition}</Card.Text>}
                     {marketplacePage ? (
