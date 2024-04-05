@@ -173,7 +173,7 @@ const Marketplace = (props) => {
 
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
-                    {price && <Card.Text>{formatter.format(price)}</Card.Text>}
+                    {price && <Card.Text><strong>{formatter.format(price)}</strong></Card.Text>}
                     {condition && <Card.Text style={{ color: condition === 'New' ? '#31CE40' : '#E7BB1A', fontWeight: 'bold' }}
                     >Condition: {condition}</Card.Text>}
                     {marketplacePage ? (
