@@ -7,6 +7,8 @@ import OpinionEditForm from "./OpinionEditForm";
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from '../../api/axiosDefaults';
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const Opinion = (props) => {
   const {
@@ -31,6 +33,7 @@ const Opinion = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/opinions/${id}/`);
+      successToast("Comment deleted successfully!");
       setMarketplace((prevMarketplace) => ({
         results: [
           {
@@ -45,7 +48,12 @@ const Opinion = (props) => {
         results: prevOpinions.results.filter((opinion) => opinion.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      if (err.response.data.opinion) {
+        // display errors for opinion field
+        errorToast(err.response.data.opinion[0]);
+    } else {
+        errorToast("Oops, something went wrong!");
+    }
     }
   };
 

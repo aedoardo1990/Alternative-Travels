@@ -170,7 +170,6 @@ function MarketEditProduct() {
                     name="condition"
                     value={condition}
                     onChange={handleChange} >
-                    <option>- Select an option -</option>
                     <option>New</option>
                     <option>Used like new</option>
                     <option>Used</option>
@@ -184,7 +183,6 @@ function MarketEditProduct() {
                     name="status"
                     value={status}
                     onChange={handleChange} >
-                    <option>- Select an option -</option>
                     <option>Available</option>
                     <option>Sold</option>
                 </Form.Control>

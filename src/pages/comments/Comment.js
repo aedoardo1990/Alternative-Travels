@@ -7,6 +7,8 @@ import CommentEditForm from "./CommentEditForm";
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from '../../api/axiosDefaults';
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const Comment = (props) => {
   const {
@@ -31,6 +33,7 @@ const Comment = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
+      successToast("Comment deleted successfully!");
       setPost((prevPost) => ({
         results: [
           {
@@ -45,7 +48,12 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      if (err.response.data.comment) {
+        // display errors for opinion field
+        errorToast(err.response.data.comment[0]);
+    } else {
+        errorToast("Oops, something went wrong!");
+    }
     }
   };
 
