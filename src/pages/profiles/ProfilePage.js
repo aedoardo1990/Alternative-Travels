@@ -105,9 +105,9 @@ function ProfilePage() {
 
     const mainProfilePosts = (
         <>
-            <hr />
-            <p className="text-center">{profile?.owner}'s posts</p>
-            <hr />
+            <hr style={{ color: '#1B7AA6', border: '1px solid' }} />
+            <p className="text-center"><strong>{profile?.owner}'s Posts</strong></p>
+            <hr style={{ color: '#1B7AA6', border: '1px solid'}} />
             {profilePosts.results.length ? (
                 <InfiniteScroll
                     children={
