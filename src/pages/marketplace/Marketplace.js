@@ -53,36 +53,37 @@ const Marketplace = (props) => {
         <Row className="mt-2">
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
-                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
-                        {status}
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
+                    <strong style={{ marginRight: '5px' }}>Status </strong> <div style={{ color: status === 'Available' ? '#31CE40' : '#FF0000', fontWeight: 'bold' }}>{status}</div>
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
-                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
-                        {details}
+                    <ListGroup.Item style={{ border: 'none' }}>
+                    <strong style={{ marginRight: '5px' }} className="flex-fill d-flex align-items-center flex-wrap">Product Description </strong>
+                    <div style={{ display: 'block', textAlign: 'left'}}>{details}</div>
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
-                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
-                        {address}
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
+                    <strong style={{ marginRight: '5px' }}>Address </strong>  {address}
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
-                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
-                        {contact_number}
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
+                    <strong style={{ marginRight: '5px' }}>Phone </strong> {contact_number}
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
             <Col md={12} className="pb-2 pt-1 pt-md-0">
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
-                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap">
-                        {email}
+                    <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
+                    <strong style={{ marginRight: '5px' }}>Email </strong> {email}
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
@@ -167,15 +168,15 @@ const Marketplace = (props) => {
                 <Card.Body>
                     {title && <Card.Title className='text-center'>{title}</Card.Title>}
                     {price && <Card.Text>{price}</Card.Text>}
-                    {condition && <Card.Text style={{color: condition === 'New' ? '#31CE40':'#E7BB1A', fontWeight: 'bold'}}
->Condition: {condition}</Card.Text>}
+                    {condition && <Card.Text style={{ color: condition === 'New' ? '#31CE40' : '#E7BB1A', fontWeight: 'bold' }}
+                    >Condition: {condition}</Card.Text>}
                     {marketplacePage ? (
                         productDetails
                     ) : (<Accordion>
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle as={Button} variant="link text-decoration-none" className={styles.Toggle} eventKey="0" onClick={handleShowDetails}>
-                                <i class="fa-solid fa-address-card"></i>Check details and contact
+                                    <i class="fa-solid fa-address-card"></i>Check details and contact
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
