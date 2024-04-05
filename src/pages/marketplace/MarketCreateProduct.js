@@ -10,6 +10,7 @@ import Asset from "../../components/Asset";
 import Spinner from "react-bootstrap/Spinner";
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "../../components/Toasts";
+import MoneyInput from "../../components/MoneyInput";
 
 import Upload from "../../assets/upload.png";
 
@@ -126,7 +127,7 @@ function MarketCreateProduct() {
 
             <Form.Group>
                 <Form.Label>Price</Form.Label>
-                <Form.Control
+                <MoneyInput
                     type="number"
                     name="price"
                     value={price}
