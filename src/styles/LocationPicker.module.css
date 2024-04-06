@@ -1,36 +1,37 @@
 .LocationPicker {
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
-    padding: 2rem;
-    width: 100vw;
-    height: 95vh;
-    background-color: rgba(50, 50, 50, 0.5);
-    z-index: 2;
-  }
-  
-  .Container {
-    height: 100%;
-    background-color: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .Map {
-    flex-grow: 1;
-    background-color: #fafafa;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-  }
-  
-  .Map svg {
-    display: none !important;
-  }
-  
-  /* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
-  .Map > div > div:nth-child(4) img {
-    filter: hue-rotate(200deg) !important;
-  }
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100vw;
+  height: 95vh;
+  background-color: rgba(50, 50, 50, 0.5);
+  z-index: 2;
+}
+
+.Container {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Map {
+  flex-grow: 1;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.Map svg {
+  display: none !important;
+}
+
+/* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
+.Map>div>div:nth-child(4) img {
+  filter: hue-rotate(200deg) !important;
+}
