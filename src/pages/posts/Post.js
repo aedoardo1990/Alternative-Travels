@@ -60,7 +60,7 @@ const Post = (props) => {
                 <ListGroup className={`${appStyles.SmallText} mb-0 me-0`}>
                     {tags?.length > 0 && (
                         <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
-                            <div className="fw-bold">TAGS<i class="fa-solid fa-hashtag fa-sm"></i></div>
+                            <div className="fw-bold">TAGS<i className="fa-solid fa-hashtag fa-sm"></i></div>
                             <div className>
                                 {tags?.map((tag, index) => (
                                     <span className={styles.Tag} key={index}>
@@ -179,7 +179,7 @@ const Post = (props) => {
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle as={Button} variant="link text-decoration-none" className={styles.Toggle} eventKey="0" onClick={handleShowDetails}>
-                                    <i class="fa-solid fa-location-dot" ></i>Where is this beauty?
+                                    <i className="fa-solid fa-location-dot" ></i>Where is this beauty?
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">

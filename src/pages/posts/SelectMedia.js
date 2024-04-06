@@ -25,7 +25,7 @@ const SelectMedia = () => {
           </div>
           <div className={styles.Create}>
             <Link className={styles.Link} to="/posts/add/image" component={Button}>
-              Create image post <i class="fa-solid fa-camera-retro fa-xl"></i>
+              Create image post <i className="fa-solid fa-camera-retro fa-xl"></i>
             </Link>
           </div>
           <div className={styles.second}>
@@ -38,7 +38,7 @@ const SelectMedia = () => {
           </div>
           <div className={styles.Create}>
             <Link className={styles.Link} to="/posts/add/video" component={Button}>
-              Create video post<i class="fa-solid fa-film fa-xl"></i>
+              Create video post<i className="fa-solid fa-film fa-xl"></i>
             </Link>
           </div>
         </Container>
