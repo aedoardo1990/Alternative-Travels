@@ -61,7 +61,7 @@ const Post = (props) => {
                     {tags?.length > 0 && (
                         <ListGroup.Item className="flex-fill d-flex align-items-center flex-wrap" style={{ border: 'none' }}>
                             <div className="fw-bold">TAGS<i className="fa-solid fa-hashtag fa-sm"></i></div>
-                            <div className>
+                            <div>
                                 {tags?.map((tag, index) => (
                                     <span className={styles.Tag} key={index}>
                                         {tag}
