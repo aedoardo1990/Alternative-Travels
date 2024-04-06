@@ -73,6 +73,7 @@ const NavBar = () => {
         <NavLink to='/'>
           <Navbar.Brand>
             <img src={logo} alt='logo' height='70' />
+            <h1 className={`${styles.Title} d-inline align-middle`}> Alternative Travels</h1>
           </Navbar.Brand>
         </NavLink>
         {currentUser && addPostIcon}

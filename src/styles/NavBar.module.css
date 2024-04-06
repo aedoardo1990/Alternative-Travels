@@ -19,3 +19,47 @@
     transition: color ease-in-out 0.3s;
     color: #1B7AA6
 }
+
+.Logo {
+    height: 2.5rem;
+  }
+  
+  .Title {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    transition: all 0.1s ease-in-out;
+  }
+  
+  .Title:hover {
+    color: #1B7AA6;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 450px) {
+    .Logo {
+      height: 4rem;
+    }
+    .Title {
+      display: none !important;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .Logo {
+      height: 4rem;
+    }
+    .Title {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .Logo {
+      height: 5rem;
+    }
+    .Title {
+      font-size: 2rem;
+      margin-left: 1.5rem;
+    }
+  }
