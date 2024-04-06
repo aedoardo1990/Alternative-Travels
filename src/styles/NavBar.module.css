@@ -27,10 +27,6 @@
   .Title {
     font-size: 1rem;
     margin-left: 0.5rem;
-    transition: all 0.1s ease-in-out;
-  }
-  
-  .Title:hover {
     color: #1B7AA6;
   }
   
