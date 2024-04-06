@@ -5,7 +5,6 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/SelectMedia.module.css";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SelectMedia = () => {
@@ -24,9 +23,9 @@ const SelectMedia = () => {
 
           </div>
           <div className={styles.Create}>
-            <Link className={styles.Link} to="/posts/add/image" component={Button}>
+            <Button className={styles.Button} href="/posts/add/image">
               Create image post <i className="fa-solid fa-camera-retro fa-xl"></i>
-            </Link>
+            </Button>
           </div>
           <div className={styles.second}>
             <Image
@@ -37,9 +36,9 @@ const SelectMedia = () => {
             />
           </div>
           <div className={styles.Create}>
-            <Link className={styles.Link} to="/posts/add/video" component={Button}>
+            <Button className={styles.Button} href="/posts/add/video">
               Create video post<i className="fa-solid fa-film fa-xl"></i>
-            </Link>
+            </Button>
           </div>
         </Container>
       </Col>

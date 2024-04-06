@@ -47,7 +47,7 @@
     border-radius: 10px;
 }
 
-.Link {
+.Button {
     text-decoration: none;
     color: white;
     background-color: #1B7AA6;
@@ -58,7 +58,7 @@
     border-color: #1B7AA6;
 }
 
-.Link:hover {
+.Button:hover {
     text-decoration: none;
     color: #1B7AA6;
     background-color: black;
