@@ -80,3 +80,9 @@
 .SearchIcon:hover {
   color: #1B7AA6;
 }
+
+@media (min-width: 1440px) {
+  .Map {
+    top: 86px;
+  }
+}
