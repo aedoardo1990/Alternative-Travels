@@ -64,6 +64,9 @@ function SignInForm() {
 
     return (
         <Row className={styles.Row}>
+            <Row className="my-auto py-2 p-md-2" md={12}>
+                <h3>Welcome Back <i className="fa-solid fa-earth-africa fa-lg color-black"></i></h3>
+                <p className="mt-3">Travel alternative, travel authentic</p>
             <Col className="my-auto p-0 p-md-2" md={6}>
                 <Container className={`${appStyles.Content} p-4`}>
                     <h1 className={styles.Header}>Login</h1>
@@ -102,6 +105,7 @@ function SignInForm() {
                     src={"https://res.cloudinary.com/duoyolryv/image/upload/v1712422360/wheel-night_ax9jro.webp"}
                 />
             </Col>
+            </Row>
         </Row>
     );
 }
