@@ -234,16 +234,17 @@ function MarketCreateProduct() {
                 <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
                     <Container className={appStyles.Content}>
                         {textFields}
-
+                        <div className="text-center">
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.Black}`}
+                            className={`${btnStyles.Button} ${btnStyles.Black} mt-2`}
                             onClick={() => history.goBack()}
                         >
                             Delete
                         </Button>
-                        <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled} >
+                        <Button className={`${btnStyles.Button} ${btnStyles.Black} mt-2`} type="submit" disabled={buttonDisabled} >
                             {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Create"}
                         </Button>
+                        </div>
                     </Container>
                 </Col>
             </Row>
