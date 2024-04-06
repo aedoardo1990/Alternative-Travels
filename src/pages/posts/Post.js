@@ -127,7 +127,7 @@ const Post = (props) => {
     };
 
     return (
-        <Container>
+        <Container className="mt-2">
             <Card className={styles.Post}>
                 <Card.Body>
                     <div>
