@@ -186,6 +186,7 @@ function PostCreateFormImage() {
 
                         <TagField sendTags={setTags} currentTags={tags} className="d-md-none" />
 
+                        <div className="text-center">
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Black}`}
                             onClick={() => history.goBack()}
@@ -195,6 +196,7 @@ function PostCreateFormImage() {
                         <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled} >
                             {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Create"}
                         </Button>
+                        </div>
                     </Container>
                 </Col>
             </Row>

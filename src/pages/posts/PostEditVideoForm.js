@@ -197,6 +197,7 @@ function PostEditVideoForm() {
                                     previousLocation={location}
                                     setButtonDisabled={setButtonDisabled}
                                 />}
+                                <div className="text-center">
                                 <Button
                                     className={`${btnStyles.Button} ${btnStyles.Black}`}
                                     onClick={() => history.goBack()}
@@ -206,6 +207,7 @@ function PostEditVideoForm() {
                                 <Button className={`${btnStyles.Button} ${btnStyles.Black}`} type="submit" disabled={buttonDisabled}>
                                 {buttonDisabled ? <Spinner animation="grow" size="sm" /> : "Update"}
                                 </Button>
+                                </div>
                             </Container>
                         </Col>
                     </Row>
