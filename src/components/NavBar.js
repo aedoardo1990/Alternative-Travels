@@ -79,7 +79,7 @@ const NavBar = () => {
         <Navbar.Toggle ref={ref} onClick={() => setExpanded(!expanded)} aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavLink exact to='/' activeClassName={styles.Active}>
+            <NavLink exact to='/' className={styles.NavLink} activeClassName={styles.Active}>
               <i className="fas fa-solid fa-house"></i> Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
