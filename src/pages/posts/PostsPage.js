@@ -46,7 +46,7 @@ function PostsPage({ message, filter = "" }) {
     }, [filter, query, pathname]);
 
     return (
-        <Row className="h-100">
+        <Row className="h-100 mt-2">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
                 <PopularProfiles mobile />
                 <i className={`fas fa-search ${styles.SearchIcon}`} />

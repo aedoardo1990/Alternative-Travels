@@ -201,7 +201,7 @@ function MarketCreateProduct() {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Row>
+            <Row className="mt-2">
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
