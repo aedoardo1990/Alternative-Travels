@@ -1,6 +1,6 @@
 # Alternative Travels API
 
-Welcome to Alternative Travels API set up using Django REST Framework for the Alternative Travels front-end application, a social media for sharing images, videos of alternative travels with the help of geolocation data and tags. The social media is provided as well with a marketplace section with rare products found by the users during their trips.
+Welcome to Alternative Travels!
 
 Here below the links to the API and the Frontend:
 
