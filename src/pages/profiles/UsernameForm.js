@@ -45,7 +45,7 @@ const UsernameForm = () => {
         ...prevUser,
         username,
       }));
-      successToast("Username edited successfully!");
+      successToast("Username changed successfully!");
       history.goBack();
     } catch (err) {
       // console.log(err);
@@ -59,7 +59,7 @@ const UsernameForm = () => {
   };
 
   return (
-    <Row>
+    <Row className="mt-4">
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit} className="my-2">

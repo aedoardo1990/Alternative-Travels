@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -13,6 +12,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -24,8 +25,6 @@ const UserPasswordForm = () => {
     new_password2: "",
   });
   const { new_password1, new_password2 } = userData;
-
-  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setUserData({
@@ -45,15 +44,24 @@ const UserPasswordForm = () => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
+      successToast("Password changed successfully!");
       history.goBack();
     } catch (err) {
       // console.log(err);
-      setErrors(err.response?.data);
+      if (err.response.data.new_password1) {
+        // display if there are errors in password1 field
+        errorToast(err.response.data.new_password1[0]);
+      } else if (err.response.data.new_password2) {
+        // display errors for password2 field
+        errorToast(err.response.data.new_password2[0]);
+      } else {
+        errorToast("Oops, something went wrong!");
+      }
     }
   };
 
   return (
-    <Row>
+    <Row className="mt-4">
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
@@ -67,11 +75,7 @@ const UserPasswordForm = () => {
                 name="new_password1"
               />
             </Form.Group>
-            {errors?.new_password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+
             <Form.Group>
               <Form.Label className="mt-2">Confirm password</Form.Label>
               <Form.Control
@@ -82,11 +86,7 @@ const UserPasswordForm = () => {
                 name="new_password2"
               />
             </Form.Group>
-            {errors?.new_password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black} mt-2`}
               onClick={() => history.goBack()}
