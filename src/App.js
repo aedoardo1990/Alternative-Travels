@@ -22,6 +22,7 @@ import MarketplacePage from "./pages/marketplace/MarketplacePage";
 import MarketplacesPage from './pages/marketplace/MarketplacesPage';
 import MarketCreateProduct from "./pages/marketplace/MarketCreateProduct";
 import MarketEditProduct from './pages/marketplace/MarketEditProduct';
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -70,7 +71,7 @@ function App() {
           <Route exact path="/marketplace/add/" render={() => <MarketCreateProduct />} />
           <Route exact path="/marketplace/:id" render={() => <MarketplacePage />} />
           <Route exact path="/marketplace/:id/edit-product" render={() => <MarketEditProduct />} />
-          <Route render={() => <h1>Page not found <i className="fa-solid fa-circle-radiation fa-beat-fade"></i></h1>} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>
