@@ -1,61 +1,68 @@
 .NavBar {
-    background-color: white;
-    /* shadow effect - https://www.w3schools.com/css/css3_shadows_box.asp*/
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+  background-color: white;
+  /* shadow effect - https://www.w3schools.com/css/css3_shadows_box.asp*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
 
 .Active {
-    color: black;
+  color: black;
 }
 
 .NavLink {
-    margin: 7px;
-    border-radius: 5px;
-    padding: 2px;
+  margin: 7px;
+  border-radius: 5px;
+  padding: 2px;
 }
 
 .NavLink:hover {
-    background-color: #DFDFDF;
-    transition: color ease-in-out 0.3s;
-    color: #1B7AA6
+  background-color: #DFDFDF;
+  transition: color ease-in-out 0.3s;
+  color: #1B7AA6
 }
 
 .Logo {
-    height: 2.5rem;
+  height: 2.5rem;
+}
+
+.Title {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: #1B7AA6;
+}
+
+/* Responsive styles */
+@media (max-width: 450px) {
+  .Logo {
+    height: 4rem;
   }
-  
+
   .Title {
-    font-size: 1rem;
-    margin-left: 0.5rem;
-    color: #1B7AA6;
+    display: none !important;
   }
-  
-  /* Responsive styles */
-  @media (max-width: 450px) {
-    .Logo {
-      height: 4rem;
-    }
-    .Title {
-      display: none !important;
-    }
+}
+
+@media (min-width: 576px) {
+  .Logo {
+    height: 4rem;
   }
-  
-  @media (min-width: 576px) {
-    .Logo {
-      height: 4rem;
-    }
-    .Title {
-      font-size: 1.5rem;
-      margin-left: 1rem;
-    }
+
+  .Title {
+    font-size: 1.5rem;
+    margin-left: 1rem;
   }
-  
-  @media (min-width: 768px) {
-    .Logo {
-      height: 5rem;
-    }
-    .Title {
-      font-size: 2rem;
-      margin-left: 1.5rem;
-    }
+}
+
+@media (min-width: 768px) {
+  .Logo {
+    height: 5rem;
   }
+
+  .Title {
+    font-size: 2rem;
+    margin-left: 1.5rem;
+  }
+
+  .NavLink {
+    text-align: center;
+  }
+}
