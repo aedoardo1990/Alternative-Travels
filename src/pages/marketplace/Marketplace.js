@@ -143,7 +143,7 @@ const Marketplace = (props) => {
     });
 
     return (
-        <Container className="mt-2">
+        <Container>
             <Card className={styles.Post}>
                 <Card.Body>
                     <div>

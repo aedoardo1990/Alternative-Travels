@@ -33,14 +33,14 @@ function MarketplacePage() {
         setMarketplace({ results: [marketplace] });
         setOpinions(opinions);
       } catch (err) {
-        // console.log(err);
+        //console.log(err);
       }
     };
     handleMount();
   }, [id]);
 
   return (
-    <Row className="h-100">
+    <Row className="h-100 mt-4">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
       <PopularProfiles mobile />
         <Marketplace {...marketplace.results[0]} setMarketplaces={setMarketplace} marketplacePage />
