@@ -9,6 +9,7 @@ import axios from 'axios';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import 'react-toastify/dist/ReactToastify.css';
 import { successToast, errorToast } from "./Toasts";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -20,6 +21,7 @@ const NavBar = () => {
     try {
       await axios.post('dj-rest-auth/logout/');
       setCurrentUser(null);
+      removeTokenTimestamp();
       successToast("Successfully logged out!");
     } catch (err) {
       errorToast("Oops, something went wrong!");
