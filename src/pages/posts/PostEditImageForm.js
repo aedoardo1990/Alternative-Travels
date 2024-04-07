@@ -46,7 +46,6 @@ function PostEditImageForm() {
                     const { data } = await axiosReq.get(`/posts/${id}`);
                     setHasLoaded(true);
                     const { title, content, image, is_owner, tags, latitude, longitude } = data;
-                    console.log(latitude, longitude)
                     is_owner ? setPostData({
                         title: title,
                         content: content,
@@ -56,7 +55,7 @@ function PostEditImageForm() {
                     })
                         : history.push("/");
                 } catch (err) {
-                    console.log(err);
+                    // console.log(err);
                 }
             }
         };

@@ -61,7 +61,7 @@ const LocationField = ({ sendLocation, previousLocation, setButtonDisabled }) =>
         }
       );
     } else {
-      // console.log("Geolocation is not supported by this browser.");
+      // console.log("Geolocation not supported by the browser");
     }
   };
   return (

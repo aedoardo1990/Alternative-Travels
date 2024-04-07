@@ -32,7 +32,7 @@ function MarketplacesPage({ message, filter = "" }) {
                 setMarketplaces(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
 

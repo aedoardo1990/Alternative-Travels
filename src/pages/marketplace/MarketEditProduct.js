@@ -61,7 +61,7 @@ function MarketEditProduct() {
                     })
                         : history.push("/");
                 } catch (err) {
-                    console.log(err);
+                    // console.log(err);
                 }
             }
         };

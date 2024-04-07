@@ -33,7 +33,7 @@ function MarketplacePage() {
         setMarketplace({ results: [marketplace] });
         setOpinions(opinions);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
