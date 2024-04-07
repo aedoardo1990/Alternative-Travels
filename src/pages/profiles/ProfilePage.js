@@ -98,7 +98,7 @@ function ProfilePage() {
                             </Button>
                         ))}
                 </Col>
-                {profile?.content && (<Col className="p-3">{profile.content}</Col>)}
+                {profile?.content && (<Col className="p-3" style={{ textAlign: 'justify' }} >{profile.content}</Col>)}
             </Row>
         </>
     );

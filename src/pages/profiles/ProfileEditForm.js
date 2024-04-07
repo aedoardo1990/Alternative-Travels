@@ -7,7 +7,6 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import {
@@ -17,6 +16,8 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -31,8 +32,6 @@ const ProfileEditForm = () => {
     image: "",
   });
   const { name, content, image } = profileData;
-
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const handleMount = async () => {
@@ -76,10 +75,22 @@ const ProfileEditForm = () => {
         ...currentUser,
         profile_image: data.image,
       }));
+      successToast("Profile edited successfully!");
       history.goBack();
     } catch (err) {
       // console.log(err);
-      setErrors(err.response?.data);
+      if (err.response.data.name) {
+        // display if there are errors in name field
+        errorToast(err.response.data.name[0]);
+      } else if (err.response.data.image) {
+        // display errors for image field
+        errorToast(err.response.data.image[0]);
+      } else if (err.response.data.content) {
+        // display errors for content field
+        errorToast(err.response.data.content[0]);
+      } else {
+        errorToast("Oops, something went wrong!");
+      }
     }
   };
 
@@ -96,11 +107,6 @@ const ProfileEditForm = () => {
         />
       </Form.Group>
 
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
       <Button
         className={`${btnStyles.Button} ${btnStyles.Black} mt-2`}
         onClick={() => history.goBack()}
@@ -115,7 +121,7 @@ const ProfileEditForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className="mt-4">
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container className={appStyles.Content}>
             <Form.Group>
@@ -124,11 +130,7 @@ const ProfileEditForm = () => {
                   <Image src={image} fluid />
                 </figure>
               )}
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
+
               <div>
                 <Form.Label
                   className={`${btnStyles.Button} ${btnStyles.Black} btn my-auto`}
