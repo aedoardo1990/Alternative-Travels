@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -16,10 +15,11 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { successToast, errorToast } from "../../components/Toasts";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
-  const [errors, setErrors] = useState({});
 
   const history = useHistory();
   const { id } = useParams();
@@ -45,10 +45,16 @@ const UsernameForm = () => {
         ...prevUser,
         username,
       }));
+      successToast("Username edited successfully!");
       history.goBack();
     } catch (err) {
       // console.log(err);
-      setErrors(err.response?.data);
+      if (err.response.data.username) {
+        // display if there are errors in username field
+        errorToast(err.response.data.username[0]);
+      } else {
+        errorToast("Oops, something went wrong!");
+      }
     }
   };
 
@@ -66,11 +72,7 @@ const UsernameForm = () => {
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>
-            {errors?.username?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black} mt-2`}
               onClick={() => history.goBack()}
