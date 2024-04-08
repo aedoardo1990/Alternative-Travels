@@ -300,6 +300,96 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 | have the possibility to add a geolocation to my posts so that other users following me can know where I have travelled | can add a geolocation when creating a post |
 | have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users | can access a marketplace with posts about artifacts and products of other travellers with their contact details under the market tab in the navbar. |
 
+### Browser Testing
+
+### Device Testing
+
+### Lighthouse Testing
+
+### HTML Validator
+<details>
+
+<summary>The website was validated by URI into the validator. No errors found.</summary>
+
+- index.html
+![HTML Validation](src/assets/readme/HTML-validator.png)
+
+</details>
+
+### W3C Validator - CSS
+
+<details>
+
+<summary>All the CSS pages were valited via direct input into the validatore. No errors found. </summary>
+
+- App.module.css
+![CSS Validation](src/assets/readme/CSS-app.png)
+
+- Asset.module.css
+![CSS Validation](src/assets/readme/CSS-asset.png)
+
+- Avatar.module.css
+![CSS Validation](src/assets/readme/CSS-avatar.png)
+
+- Button.module.css
+![CSS Validation](src/assets/readme/CSS-button.png)
+
+- Comment.module.css
+![CSS Validation](src/assets/readme/css-comment.png)
+
+- CommentCreateEditForm.module.css
+![CSS Validation](src/assets/readme/CSS-commentcreateeditform.png)
+
+- LocationPicker.module.css
+![CSS Validation](src/assets/readme/css-location-picker.png)
+
+- Map.module.css
+![CSS Validation](src/assets/readme/css-map.png)
+
+- MoreDropdown.module.css
+![CSS Validation](src/assets/readme/css-moredrop.png)
+
+- NavBar.module.css
+![CSS Validation](src/assets/readme/css-nav.png)
+
+- NotFound.module.css
+![CSS Validation](src/assets/readme/css-notfound.png)
+
+- Post.module.css
+![CSS Validation](src/assets/readme/css-post-detail-map.png)
+
+- PostCreateEditForm.module.css
+![CSS Validation](src/assets/readme/css-post-detail-map.png)
+
+- PostDetail.module.css
+![CSS Validation](src/assets/readme/css-post-detail-map.png)
+
+- PostImage.module.css
+![CSS Validation](src/assets/readme/css-post-image.png)
+
+- PostsPage.module.css
+![CSS Validation](src/assets/readme/css-postpage.png)
+
+- PostVideo.module.css
+![CSS Validation](src/assets/readme/css-postvideo.png)
+
+- Profile.module.css
+![CSS Validation](src/assets/readme/css-profile.png)
+
+- ProfilePage.module.css
+![CSS Validation](src/assets/readme/css-profile-page.png)
+
+- SelectMedia.module.css
+![CSS Validation](src/assets/readme/css-select-media.png)
+
+- SignInUpForm.module.css
+![CSS Validation](src/assets/readme/css-signinup.png)
+
+- TagField.module.css
+![CSS Validation](src/assets/readme/css-tag-field.png)
+
+</details>
+
 
 
 
@@ -346,7 +436,7 @@ Once you have set up the workspace and done a basic deploy to Heroku, you can co
 - [React-Toastify](https://www.npmjs.com/package/react-toastify) - to add alerts when actions are taken by the user
 - [Axios](https://axios-http.com/) - for making HTTP requests to the API
 - [Bootstrap](https://getbootstrap.com/) and [React Bootstrap](https://react-bootstrap.github.io/) - for styling and layout
-- [React Router](https://reactrouter.com/en/main) for routing
+- [React Router](https://reactrouter.com/en/main) - for routing
 - [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component) - for implementing infinite scroll
 - [JWT Decode](https://www.npmjs.com/package/jwt-decode) - for decoding JSON Web Tokens 
 - [React Leaflet](https://react-leaflet.js.org/) - for displaying maps.
