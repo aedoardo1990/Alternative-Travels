@@ -6,15 +6,14 @@ Bored of travelling in famous locations packed with tourists? If yes, Alternativ
 
 The live link of our Fronted Website can be found here - [Alternative Travels](https://alternative-travel-54fe13e24a2a.herokuapp.com/)
 
-Here below the links to the backend API:
+## ![Responsive Mockup](src/assets/readme/mockup.png)
 
-<strong>Backend</strong>
+Here below the links to the <strong>Backend  API</strong>:
 
 [Live Backend Website](https://alternative-travels-debb28d8ca03.herokuapp.com/)
+
 [Backend Repository](https://github.com/aedoardo1990/alternative-travels-api)
 
-
-## ![Responsive Mockup](src/assets/readme/mockup.png)
 
 
 ## Table of Contents
