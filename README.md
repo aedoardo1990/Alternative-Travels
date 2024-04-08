@@ -17,6 +17,7 @@ Here below the links to the <strong>Backend  API</strong>:
 
 
 ## Table of Contents
+- [Design](#design)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
@@ -25,8 +26,34 @@ Here below the links to the <strong>Backend  API</strong>:
   - [User Stories Testing](#user-stories-testing)
 - [Deployment](#deployment)
 - [Technologies Used](#technologies-used)
+- [Bugs](#bugs)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
+
+
+## Design
+
+### Color scheme
+
+The site has a clean and simple design to provide users with easy access to essential information for their trips. 
+
+The main colors chosen for the website are the following ones.
+
+![Colors](src/assets/readme/colors.png)
+
+### Imagery
+
+In the login, signup and notfound pages the wheel displayed is the one of the Amusements Park of the sadly known city of Chernobyl. This location, despite the tragedy that happened in 1986 and before the ongoing war between Russia and Ukraine, has been visited in the recent years by tourists. It symbolizes how decadent or  so called "not positive" places can spark the interests of people around the world.
+
+### Fonts
+
+Font used is Roboto. The font was imported via Google Fonts. The back-up font is sans-serif.
+
+### Wireframes
+
+The wireframes for the "Alternative Travels" website were created with Figma. Due to lack of time they were designed in a simple way. Their quality will be improved at a later point.
+
+![Figma](src/assets/readme/wireframes.png)
 
 
 ## Features
