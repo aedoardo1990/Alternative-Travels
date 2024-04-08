@@ -94,7 +94,7 @@ By clicking on each marker, it is possible to check which user did the post and 
 
 A logged in user can edit and delete his/her posts by clicking on the image/video of the his/her post and by clicking on the dots in the top right corner. All the fields can be edited.
 
-![edit delete posts](src/assets/readme/delete-post.png)
+![edit delete posts](src/assets/readme/edite-delete-posts.png)
 
 If the user wants to delete the post, he/she will be asked first, if he/she is sure to take that action.
 
@@ -184,7 +184,103 @@ We would like to implement a functionality for travellers to organise meet ups b
 
 #### Site redirection to Booking/AirBnb
 
-We would like to implement the option to be redirected from our website to the available accomodations on Booking/AirBnb if a user is intered to travel to a specific location. 
+We would like to implement the option to be redirected from our website to the available accomodations on Booking/AirBnb if a user is intered to travel to a specific location.
+
+
+## User Stories
+
+The frontend section of the project focuses on the usage of the website from the perspective of a site user. The User Stories are divided into the following categories:
+
+#### Navbar & Routing 
+- As a site user I want to view a navbar in every page so that I can navigate easily between pages
+- As a site user I want to navigate through pages easily so that I can view content without page refresh
+
+#### Registration
+- As a site user I want to create an account so that I can get access to all features of the application for signed up users.
+
+#### Login
+- As a site user I want to sign in to the website so that I can access functionality for logged in users
+
+#### Refresh access token
+- As a site user I want to keep my logged-in status until I choose to log out so that my user experience is not compromised
+
+#### Logout
+- As a site user I want to log out so that I can securely quit my session and keep my profile data safe.
+
+#### Create Posts with images or videos
+- As a site user I want to create a post, so that I can share images and youtube videos about my trips or alternative travels around the world
+
+#### View a post
+- As a site user I want to click on a post, so that I can view all the posts' details and comments of other users
+
+#### Like Posts 
+- As a site user I want to like other users' posts so that I can show my appreciation for travels and activities of other users
+
+#### Newsfeed with infinite scrolling
+- As a site user I want to view the most recent posts, so that I am up to date with the newest content
+
+#### View posts of followed users 
+- As a site user I want to see posts of followed users, so that I can keep up to date with content of users I like
+
+#### View liked posts
+- As a site user I want to view posts I liked, so that I can find again valuable information and images of interesting travels
+
+#### Post page CRUD
+- As a site user I want to create, read, update and delete my posts so that I can tailor my posts and profile according to the image I want to give to my followers and the community
+
+#### Comments CRUD 
+- As a site user I want to create, read, update and delete my comments on posts, so that I can leave my opinion on interesting topics or update/delete what I wrote if any change is needed
+
+#### Profile page
+- As a site user I want to view other user profiles so that I can learn about who they are, read their posts and follow them if I'll find them interesting
+
+#### Popular profiles
+- As a site user I want to see a list of the most followed profiles so that I can view which users are popular on the platform and decide if to follow their profiles
+
+#### Follow or Unfollow a User
+- As a site user I want to follow or unfollow a user, so that I can keep up to date with the user's posts and content
+
+#### Edit Profile
+- As a site user I want to edit my profile, so that I can keep up to date my general info, my profile photo and posts
+
+#### Update password and username
+- As a site user I want to update my password and username so that I can keep my account secure and change my displayed name on the social network
+
+#### Geolocation
+- As a site user I want to have the possibility to add a geolocation to my posts so that other users following me can know where I have travelled.
+
+#### MarketPlace 
+- As a site user I want to have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users.
+
+
+
+## Testing
+
+### User Stories Testing
+
+| Expectation (As a site user, I want to...)  | Result (As a site user, I...)    |
+| :---------------------------------: | :------------------------------:|
+| view a navbar in every page so that I can navigate easily between pages | can view a navbar in every page and navigate without issues in all the sections of the site |
+| create an account so that I can get access to all features of the application for signed up users | can access of all the features of the app after creating an account |
+| sign in to the website so that I can access functionality for logged in users | can have access to all the site features anytime I log in to the website |
+| keep my logged-in status until I choose to log out so that my user experience is not compromised | can keep my logged in status until I decided to log out |
+| log out so that I can securely quit my session and keep my profile data safe | can log out from my account and keep it safe |
+| create a post, so that I can share images and videos about my trips or alternative travels around the world |can create posts either with images or videos of my trips |
+| click on a post, so that I can view all the posts' details and comments of other users | can view all the post details after clicking on it |
+| like other users' posts so that I can show my appreciation for travels and activities of other users | can like other users posts|
+| view the most recent posts, so that I am up to date with the newest content | get the most recent posts in the Home, Feed and Market pages so that I always know what s new about other users|
+| see posts of followed users, so that I can keep up to date with content of users I like | can see posts of followed users in my feed |
+| view posts I liked, so that I can find again valuable information and images of interesting travels | can see posts I liked under Liked tab of the navbar |
+| create, read, update and delete my posts so that I can tailor my posts and profile according to the image I want to give to my followers and the community | can create edit or delete my posts anytime I want|
+| create, read, update and delete my comments on posts, so that I can leave my opinion on interesting topics or update/delete what I wrote if any change is needed | can create edit or delete my comments anytime I want |
+| view other user profiles so that I can learn about who they are, read their posts and follow them if I'll find them interesting |can check the other users profiles by clicking on their image |
+| see a list of the most followed profiles so that I can view which users are popular on the platform and decide if to follow their profiles | can see who are the most followed profiles on the site in the bar on the right side (laptop view) |
+| follow or unfollow a user, so that I can keep up to date with the user's posts and content | can follow or unfollow users |
+| edit my profile, so that I can keep up to date my general info, my profile photo and posts | can edit my profile photo  and description |
+| update my password and username so that I can keep my account secure and change my displayed name on the social network | can change my username or password in my profile page |
+| have the possibility to add a geolocation to my posts so that other users following me can know where I have travelled | can add a geolocation when creating a post |
+| have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users | can access a marketplace with posts about artifacts and products of other travellers with their contact details under the market tab in the navbar. |
+
 
 
 
