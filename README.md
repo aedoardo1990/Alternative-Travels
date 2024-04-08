@@ -253,6 +253,20 @@ The frontend section of the project focuses on the usage of the website from the
 - As a site user I want to have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users.
 
 
+## Agile Methodology
+
+### Kanban Board
+
+I used the Kanban Board to build the Alternative Travels Frontend using Agile principles from the start. The user stories created are from the perspective of a site user to follow and test throughout the usage of the site. The Agile Principles helped to organise how to build step by step the whole application. 
+
+Each user story has a level of prioritisation using the MoSCoW method. The 2 different levels of prioritization are divided as below:
+- must-have
+- should-have
+
+![Kanban Board img](assets/readme/kanban.png)
+![Issues img](assets/readme/issues.png)
+
+
 
 ## Testing
 
@@ -280,6 +294,10 @@ The frontend section of the project focuses on the usage of the website from the
 | update my password and username so that I can keep my account secure and change my displayed name on the social network | can change my username or password in my profile page |
 | have the possibility to add a geolocation to my posts so that other users following me can know where I have travelled | can add a geolocation when creating a post |
 | have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users | can access a marketplace with posts about artifacts and products of other travellers with their contact details under the market tab in the navbar. |
+
+
+
+
 
 
 # Deployment
