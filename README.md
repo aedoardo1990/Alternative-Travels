@@ -2,7 +2,7 @@
 
 Welcome to Alternative Travels!
 
-Bored of travelling in famous locations packed with tourists? If yes, Alternative Travels could be what you are looking for. Alternative Travels is a social media app designed to help travellers discover unknow locations and the hidden beauty behind places that could look "decadent" or "wired" at first sight. In these locations you won't find the usual shopping street that looks the same all around the world with Louis Vitton, Zara and HM, but you will get in real contact with the feelings of time and history of the place, you will experience the simple and authentic life of some of the locals living there, you will find handcrafted and vintage artifacts and could get lost in those marvelous worlds.
+Bored of travelling to famous locations packed with tourists? If yes, Alternative Travels could be what you are looking for. Alternative Travels is a social media app designed to help travellers discover unknow locations and the hidden beauty behind places that could look "decadent" or unconventional at first sight. In these locations you won't find the usual shopping street that looks the same all around the world with Louis Vitton, Zara and HM, but you will get in real contact with the feelings of time and history of the place, you will experience simple and authentic life of some of the locals living there, you will find handcrafted and vintage artifacts and could get lost in those marvelous worlds.
 
 The live link of our Fronted Website can be found here - [Alternative Travels](https://alternative-travel-54fe13e24a2a.herokuapp.com/)
 
@@ -20,6 +20,11 @@ Here below the links to the <strong>Backend  API</strong>:
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
+- [Agile Methodology](#agile-methodology)
+- [Testing](#testing)
+  - [User Stories Testing](#user-stories-testing)
+- [Deployment](#deployment)
+- [Technologies Used](#technologies-used)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
 
@@ -328,18 +333,60 @@ Once you have set up the workspace and done a basic deploy to Heroku, you can co
 10. Import this file into App.js to be used across all pages
 
 
+## Technologies Used
 
+## Languages
 
+- [React.js](https://en.wikipedia.org/wiki/React_(software)) - frontend JavaScript library for the base for the frontend components
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - for the interactive elements of the website
+- [HTML5](https://en.wikipedia.org/wiki/HTML) - for the content and structure for the website
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - for the styling for the website
 
+### JavaScript and React Libraries
+- [React-Toastify](https://www.npmjs.com/package/react-toastify) - to add alerts when actions are taken by the user
+- [Axios](https://axios-http.com/) - for making HTTP requests to the API
+- [Bootstrap](https://getbootstrap.com/) and [React Bootstrap](https://react-bootstrap.github.io/) - for styling and layout
+- [React Router](https://reactrouter.com/en/main) for routing
+- [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component) - for implementing infinite scroll
+- [JWT Decode](https://www.npmjs.com/package/jwt-decode) - for decoding JSON Web Tokens 
+- [React Leaflet](https://react-leaflet.js.org/) - for displaying maps.
 
+## Additional Frameworks & Software
+
+- [Figma](https://www.figma.com/) - to create the wireframes
+- [Github](https://github.com/) - Used to host the repository, store the commit history and manage the project board containing user stories
+- [Gitpod](https://gitpod.io/workspaces) - Cloud development environment
+- [Heroku](https://en.wikipedia.org/wiki/Heroku) - Cloud platform that the application is deployed to
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - to test site performance
+- [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) - Used to debug and test responsivness of site
+- [Cloudinary](https://cloudinary.com/) - Service that hosts image files and videos in the project
+- [HTML Validation](https://validator.w3.org/) - Used to validate HTML code
+- [CSS Validation](https://jigsaw.w3.org/css-validator/) - Used to validate CSS code
+- [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code
+- [Google Fonts](https://fonts.google.com/) - for the Font of the website
+- [Font Awesome](https://fontawesome.com/) - for the icons of the website
+- [draw.io](https://app.diagrams.net/) - to create the Database diagram of the Backend readme
+- [Colors](https://coolors.co/) - to create the color palette of the readme
+- [Techsini](https://techsini.com/multi-mockup/index.php) - mockup generator for the readme image at the top showing how the site looks on different screen sizes and devices
+- [iloveimg](https://www.iloveimg.com/) - to compress and crop images
+- [tiny-img](https://tiny-img.com/webp/) - to convert images to webp format - the webp format allows the website to be lighter when loading 
 
 
 ## Credits
 
+### Code used
 - [CI Walkthrough Project](https://github.com/mr-fibonacci/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - for setting up the main structure of the code of my application
-- [Sonic Explorers](https://github.com/nacht-falter/sonic-explorers) - for setting up the geolocation and tags functionalities and as a main inspiration for my website
+- [Sonic Explorers](https://github.com/nacht-falter/sonic-explorers) - for setting up the geolocation, the map and tags functionalities and as a main inspiration for my website
 - [Skate Universe](https://github.com/vanderpatrick/skate-universe) - to learn how to include posts with videos in a social media app
 - [Urbantrip](https://github.com/sbojorge/urbantrip) - to conditionally render either images or videos in a post
+- [Stack Overflow](https://stackoverflow.com/)
+- [Stack Overflow](https://stackoverflow.com/questions/35762351/correct-way-to-handle-conditional-styling-in-react) - to handle color conditional rendering in the Marketplace posts
+- [Happening](https://github.com/quiltingcode/happening-react-frontend/tree/main) - to understand how to create a dropdown in the create marketplace form to create posts on the marketplace
+- [Alejandro AO - Software & Ai](https://www.youtube.com/watch?v=jD6813wGdBA&t=165s) - to learn how to create the geolocation icon marker with Leaflet
+
+### Media
+- [Pinterest](https://www.pinterest.it/) - for the images posted on the website, the logo
+- [Pexals](https://www.pexels.com/) - for the videos posted on the website
 
 
 ## Acknowledgments 
