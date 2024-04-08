@@ -263,8 +263,8 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 - must-have
 - should-have
 
-![Kanban Board img](assets/readme/kanban.png)
-![Issues img](assets/readme/issues.png)
+![Kanban Board img](src/assets/readme/kanban.png)
+![Issues img](src/assets/readme/issues.png)
 
 
 
