@@ -302,9 +302,17 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 
 ### Browser Testing
 
+The Website was tested on Google Chrome, Microsoft Edge, Safari, and Firefox with no issues.
+
 ### Device Testing
 
+The Website was tested on the following devices, OnePlusNord10, iPhone13 mini, MacBook, laptop Acer Swift SF314-43 and created for the following screen sizes: 320px, 576px, 768px, 992px, 1024px and up.
+
 ### Lighthouse Testing
+
+The below is the result of the Lighthouse testing. I could not work on improving the results due to lack of time. This will be done at a later stage
+
+![Lighouse Testing](src/assets/readme/Lighthouse.png)
 
 
 ### HTML Validator
@@ -392,7 +400,7 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 </details>
 
 
-### ESLINT Validator
+### ESLint Validator
 <details>
 
 <summary>The website was validated via [ESLint](https://eslint.org/play/). There are multiple errors for which I did not have time to review carefully. They will be corrected at a later point as I need to understand better how ESlint works. Pls find the errors below</summary>
