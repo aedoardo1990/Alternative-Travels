@@ -282,6 +282,35 @@ The frontend section of the project focuses on the usage of the website from the
 | have a marketplace so that I can buy interesting products and relics from alternative travels of other users on the platform or alternatively I can post items to sell to other users | can access a marketplace with posts about artifacts and products of other travellers with their contact details under the market tab in the navbar. |
 
 
+# Deployment
+
+### Deployment to Heroku
+
+Once you have created a new gitpod workspace and set up the new project, you are ready to deploy to Heroku. 
+
+1. In your heroku account, select Create New App, and give it a unique name related to your project. 
+2. Select a region corresponding to where you live and click 'Create App'.
+3. Head into the 'Deploy' tab select GitHub as the 'deployment method', find your project repository and click 'Connect'.
+4. Click 'Deploy branch' to trigger Heroku to start building the application. 
+5. Once you see the message saying 'build succeeded' you can click 'Open App' to see your application in the browser. 
+
+### Connect React Frontend to the API backend
+
+Once you have set up the workspace and done a basic deploy to Heroku, you can connect the react workspace to your API, in order to send data to the API
+
+1. In the Heroku dashboard, go into the API application settings
+2. In 'Settings' add a new Config Var called 'CLIENT_ORIGIN' and set that to the URL for your deployed React application. In my case, this would be [https://alternative-travel-54fe13e24a2a.herokuapp.com/](https://alternative-travel-54fe13e24a2a.herokuapp.com/).
+3. Then add another Config Var called 'CLIENT_ORIGIN_DEV' and enter the URL of your Gitpod preview link, remembering to remove the trailing slash at the end. Gitpod occasionally changes this URL so keep an eye on it, as you are working on your project. 
+4. Go back into your frontend Gitpod workspace, and install the Axios library using the command 'npm install axios'.
+5. Create a folder called 'API' and inside it create a file called 'axiosDefaults'.
+6. import axios at the top of the file
+7. Define your baseURL which is the unique URL of your deployed API project. In my case this would be [https://alternative-travel-54fe13e24a2a.herokuapp.com/](https://alternative-travel-54fe13e24a2a.herokuapp.com/)
+8. Set the content-type header to multi-part/form-data as the API will need to deal with images as well as text in it's requests.
+9. In order to avoid any CORS issues, set withCredentials to True.
+10. Import this file into App.js to be used across all pages
+
+
+
 
 
 
