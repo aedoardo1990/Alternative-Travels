@@ -458,6 +458,34 @@ The below is the result of the Lighthouse testing. I could not work on improving
 </details>
 
 
+## Bugs
+
+### Fixed Bugs
+
+#### Location rendering 
+
+I was not able to render the location correctly after a new post was created. The issue was that the component was being rendered before the API data was loaded and therefore undefined values were passed to the subcomponents. This was fixed by adding some logic that helped to load the initil value of latitude and longitude and only update once the user selects a location on the map.
+
+#### Leaflet Map rendering
+
+Leaflet map under the Map tab was not rendering correctly. This was fixed by adding some CSS after checking a post on stackoverflow. 
+
+### Unfixed Bugs
+
+#### Pop up window appearing behind the searchbar
+
+When clicking on location, pop up info appearing behind the searchbar. It should be in the front. Not able to fix it due to lack of time.
+
+#### Tags error handling
+
+When creating a new posts, if no tags are entered and we press submit, a toast error message should pop out but it does not.
+
+![map bug](src/assets/readme/map.png)
+
+#### Dots icon to update Profile data on the top right corner of the Profile Page
+
+The icon on large screen is sometimes displayed out of the profile frame. I tried to fix this by adding some CSS, it works fine for the following sizes: 320, 576, 768, 992 and 1024px. But on other sizes might sometimes not be displayed correctly. 
+
 
 # Deployment
 
