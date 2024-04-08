@@ -1,17 +1,20 @@
-# Alternative Travels API
+# Alternative Travels
 
 Welcome to Alternative Travels!
 
-Here below the links to the API and the Frontend:
+Bored of travelling in famous locations packed with tourists? If yes, Alternative Travels could be what you are looking for. Alternative Travels is a social media app designed to help travellers discover unknow locations and the hidden beauty behind places that could look "decadent" or "wired" at first sight. In these locations you won't find the usual shopping street that looks the same all around the world with Louis Vitton, Zara and HM, but you will get in real contact with the feelings of time and history of the place, you will experience the simple and authentic life of some of the locals living there, you will find handcrafted and vintage artifacts and could get lost in those marvelous worlds.
+
+The live link of our Fronted Website can be found here - [Alternative Travels](https://alternative-travel-54fe13e24a2a.herokuapp.com/)
+
+Here below the links to the backend API:
 
 <strong>Backend</strong>
 
-💻 [Live link](https://alternative-travels-debb28d8ca03.herokuapp.com/)
+[Live Backend Website](https://alternative-travels-debb28d8ca03.herokuapp.com/)
+[Backend Repository](https://github.com/aedoardo1990/alternative-travels-api)
 
-<strong>Frontend</strong>
 
-[Repository here](https://github.com/aedoardo1990/alternative-travels/)
-[Live website here](https://alternative-travel-54fe13e24a2a.herokuapp.com/)
+## ![Responsive Mockup](src/assets/readme/mockup.png)
 
 
 ## Table of Contents
