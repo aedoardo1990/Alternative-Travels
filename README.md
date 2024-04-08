@@ -306,15 +306,16 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 
 ### Lighthouse Testing
 
+
 ### HTML Validator
 <details>
 
 <summary>The website was validated by URI into the validator. No errors found.</summary>
 
-- index.html
 ![HTML Validation](src/assets/readme/HTML-validator.png)
 
 </details>
+
 
 ### W3C Validator - CSS
 
@@ -391,7 +392,62 @@ Each user story has a level of prioritisation using the MoSCoW method. The 2 dif
 </details>
 
 
+### ESLINT Validator
+<details>
 
+<summary>The website was validated via [ESLint](https://eslint.org/play/). There are multiple errors for which I did not have time to review carefully. They will be corrected at a later point as I need to understand better how ESlint works. Pls find the errors below</summary>
+
+![1](src/assets/readme/eslint/app.png)
+![2](src/assets/readme/eslint/asset.png)
+![3](src/assets/readme/eslint/avatar.png)
+![4](src/assets/readme/eslint/comment-create.png)
+![5](src/assets/readme/eslint/comment-edit-form.png)
+![6](src/assets/readme/eslint/comment.png)
+![7](src/assets/readme/eslint/current-user-context.png)
+![8](src/assets/readme/eslint/index.png)
+![9](src/assets/readme/eslint/location-field.png)
+![10](src/assets/readme/eslint/utils.png)
+![11](src/assets/readme/eslint/location-picker.png)
+![12](src/assets/readme/eslint/login.png)
+![13](src/assets/readme/eslint/map-popup.png)
+![14](src/assets/readme/eslint/map.png)
+![15](src/assets/readme/eslint/market-create-product.png)
+![16](src/assets/readme/eslint/marketeditproduct.png)
+![17](src/assets/readme/eslint/marketplace.png)
+![18](src/assets/readme/eslint/marketplacepage.png)
+![19](src/assets/readme/eslint/marketplacespage.png)
+![20](src/assets/readme/eslint/more-dropdown.png)
+![21](src/assets/readme/eslint/more-dropdown.png)
+![22](src/assets/readme/eslint/nav.png)
+![23](src/assets/readme/eslint/notfound.png)
+![24](src/assets/readme/eslint/opinion.png)
+![25](src/assets/readme/eslint/opinioncreateform.png)
+![26](src/assets/readme/eslint/opinionedit.png)
+![27](src/assets/readme/eslint/popularprofiles.png)
+![28](src/assets/readme/eslint/post-image.png)
+![29](src/assets/readme/eslint/post-list-map.png)
+![30](src/assets/readme/eslint/post-video.png)
+![31](src/assets/readme/eslint/post.png)
+![32](src/assets/readme/eslint/postcreateform.png)
+![33](src/assets/readme/eslint/postdetailmap.png)
+![34](src/assets/readme/eslint/posteditimage.png)
+![35](src/assets/readme/eslint/postpage.png)
+![36](src/assets/readme/eslint/postspage.png)
+![37](src/assets/readme/eslint/postvideoeditform.png)
+![38](src/assets/readme/eslint/posycreateformimage.png)
+![39](src/assets/readme/eslint/profile-data-context.png)
+![40](src/assets/readme/eslint/profile-edit-form.png)
+![41](src/assets/readme/eslint/profile.png)
+![42](src/assets/readme/eslint/profilepage.png)
+![43](src/assets/readme/eslint/select-media.png)
+![44](src/assets/readme/eslint/signup.png)
+![45](src/assets/readme/eslint/tag-field.png)
+![46](src/assets/readme/eslint/user-redirect.png)
+![47](src/assets/readme/eslint/username-form.png)
+![48](src/assets/readme/eslint/userpasswordform.png)
+
+
+</details>
 
 
 
